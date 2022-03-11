@@ -8,6 +8,7 @@ authors = ["ajib6ept <asAlbert@narod.ru>"]
 python = "^3.8"
 Django = "^4.0.3"
 gunicorn = "^20.1.0"
+django-bootstrap4 = "^22.1"
 
 [tool.poetry.dev-dependencies]
 

@@ -1,0 +1,26 @@
+{% extends 'bootstrap4/bootstrap4.html' %}
+{% load bootstrap4 %}
+{% load i18n %}
+
+{% block bootstrap4_content %}
+
+<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+    <h5 class="my-0 mr-md-auto font-weight-normal">{% trans 'TaskManager' %}</h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <a class="p-2 text-dark" href="#">{% trans 'Users' %}</a>
+      <a class="p-2 text-dark" href="#">{% trans 'Login' %}</a>
+    </nav>
+    <a class="btn btn-outline-primary" href="#">{% trans 'SingUp' %}</a>
+  </div>
+
+
+
+    <div class="container">
+        <h1>{% block title %}(no title){% endblock %}</h1>
+
+        {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+
+        {% block content %}(no content){% endblock %}
+    </div>
+
+{% endblock %}
