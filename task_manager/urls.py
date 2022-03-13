@@ -28,7 +28,7 @@ from .views import (
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("users/", UsersListView.as_view(), name="users_lists"),
-    path("users/create/", UserCreateView.as_view(), name="user_create"),
+    path("users/create/", UserCreateView.as_view(), name="register"),
     path("users/<int:pk>/update/", UserUpdateView.as_view(), name="user_chg"),
     path("users/<int:pk>/delete/", UserDeleteView.as_view(), name="user_del"),
     path("login/", UserLoginView.as_view(), name="user_login"),
