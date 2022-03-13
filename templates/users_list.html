@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans 'Users' %}</h1>
+<ul>
+{% for user in object_list %}
+    <li>{{ user }}</li>
+{% endfor %}
+</ul>
+{% endblock %}
