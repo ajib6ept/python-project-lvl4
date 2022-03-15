@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-13 08:36+0300\n"
+"POT-Creation-Date: 2022-03-15 07:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,14 +22,20 @@ msgstr ""
 msgid "TaskManager"
 msgstr "Task Manager"
 
-#: templates/base.html:10 templates/users_list.html:3
+#: templates/base.html:10 templates/users_list.html:4
 msgid "Users"
 msgstr "Users"
 
-#: templates/base.html:11
+#: templates/base.html:12 templates/user_login.html:4
+#: templates/user_login.html:8
 msgid "Login"
 msgstr "Login"
 
-#: templates/base.html:13
+#: templates/base.html:14
+msgid "Logout"
+msgstr "Logout"
+
+#: templates/base.html:19 templates/user_register.html:4
+#: templates/user_register.html:8
 msgid "SingUp"
 msgstr "Sing Up"

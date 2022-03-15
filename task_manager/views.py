@@ -1,10 +1,11 @@
-from django.views.generic import TemplateView
-from django.views.generic.list import ListView
+from django.contrib.auth import login
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
-from django.views.generic.edit import FormView
-from django.urls import reverse_lazy
 from django.contrib.messages.views import SuccessMessageMixin
+from django.urls import reverse_lazy
+from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
+from django.views.generic.list import ListView
 
 
 class HomePageView(TemplateView):
@@ -35,8 +36,16 @@ class UserDeleteView(TemplateView):
     pass
 
 
-class UserLoginView(TemplateView):
-    pass
+class UserLoginView(SuccessMessageMixin, FormView):
+    template_name = "user_login.html"
+    form_class = AuthenticationForm
+    success_url = reverse_lazy("home")
+    success_message = "Successful login"
+
+    def form_valid(self, form):
+        self.user = form.get_user()
+        login(self.request, self.user)
+        return super().form_valid(form)
 
 
 class UserLogoutView(TemplateView):
