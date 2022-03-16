@@ -1,4 +1,3 @@
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
@@ -6,6 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
+
+from .forms import TaskManagerUserCreationForm
 
 
 class HomePageView(TemplateView):
@@ -19,7 +20,7 @@ class UsersListView(ListView):
 
 class UserCreateView(SuccessMessageMixin, FormView):
     template_name = "user_register.html"
-    form_class = UserCreationForm
+    form_class = TaskManagerUserCreationForm
     success_url = reverse_lazy("user_login")
     success_message = "Your profile was created successfully"
 
