@@ -1,6 +1,6 @@
-from django.contrib.auth import login
-from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
@@ -20,7 +20,7 @@ class UsersListView(ListView):
 class UserCreateView(SuccessMessageMixin, FormView):
     template_name = "user_register.html"
     form_class = UserCreationForm
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("user_login")
     success_message = "Your profile was created successfully"
 
     def form_valid(self, form):
@@ -36,20 +36,14 @@ class UserDeleteView(TemplateView):
     pass
 
 
-class UserLoginView(SuccessMessageMixin, FormView):
+class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = "user_login.html"
-    form_class = AuthenticationForm
-    success_url = reverse_lazy("home")
+    next_page = reverse_lazy("home")
     success_message = "Successful login"
 
-    def form_valid(self, form):
-        self.user = form.get_user()
-        login(self.request, self.user)
-        return super().form_valid(form)
 
-
-class UserLogoutView(TemplateView):
-    pass
+class UserLogoutView(LogoutView):
+    next_page = reverse_lazy("home")
 
 
 # GET /users/ - страница со списком всех пользователей
