@@ -5,8 +5,10 @@ from django.urls import reverse_lazy
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 from django.views.generic.list import ListView
+from django.contrib.auth import login
 
-from .forms import TaskManagerUserCreationForm
+
+from .forms import TaskManagerUserCreationForm, TaskManagerAuthenticationForm
 
 
 class HomePageView(TemplateView):
@@ -37,10 +39,15 @@ class UserDeleteView(TemplateView):
     pass
 
 
-class UserLoginView(SuccessMessageMixin, LoginView):
+class UserLoginView(SuccessMessageMixin, FormView):
     template_name = "user_login.html"
-    next_page = reverse_lazy("home")
+    success_url = reverse_lazy("home")
+    form_class = TaskManagerAuthenticationForm
     success_message = "Successful login"
+
+    def form_valid(self, form):
+        login(self.request, form.get_user())
+        return super().form_valid(form)
 
 
 class UserLogoutView(LogoutView):
