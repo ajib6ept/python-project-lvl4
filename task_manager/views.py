@@ -1,14 +1,19 @@
+from django.contrib.auth import login
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.auth.views import LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView
-from django.views.generic.edit import FormView
+from django.views.generic.edit import FormView, UpdateView
 from django.views.generic.list import ListView
-from django.contrib.auth import login
 
-
-from .forms import TaskManagerUserCreationForm, TaskManagerAuthenticationForm
+from .forms import (
+    TaskManagerAuthenticationForm,
+    TaskManagerChangeUserForm,
+    TaskManagerUserCreationForm,
+)
 
 
 class HomePageView(TemplateView):
@@ -31,8 +36,18 @@ class UserCreateView(SuccessMessageMixin, FormView):
         return super().form_valid(form)
 
 
-class UserUpdateView(TemplateView):
-    pass
+class UserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+    model = User
+    template_name = "user_change.html"
+    form_class = TaskManagerChangeUserForm
+    success_url = reverse_lazy("users_lists")
+    success_message = "Your profile was created successfully"
+
+    def dispatch(self, *args, **kwargs):
+        obj = self.get_object()
+        if obj != self.request.user:
+            return redirect("user_login")
+        return super().dispatch(*args, **kwargs)
 
 
 class UserDeleteView(TemplateView):
