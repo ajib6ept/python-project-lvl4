@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-15 07:24+0300\n"
+"POT-Creation-Date: 2022-03-23 06:50+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,20 +24,44 @@ msgstr ""
 msgid "TaskManager"
 msgstr "Менеджер задач"
 
-#: templates/base.html:10 templates/users_list.html:4
+#: templates/base.html:12
+msgid "Statuses"
+msgstr "Статусы"
+
+#: templates/base.html:13
+msgid "Marks"
+msgstr "Метки"
+
+#: templates/base.html:14
+msgid "Tasks"
+msgstr "Задачи"
+
+#: templates/base.html:17 templates/status_list.html:4
+#: templates/users_list.html:4
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/base.html:12 templates/user_login.html:4
+#: templates/base.html:19 templates/user_login.html:4
 #: templates/user_login.html:8
 msgid "Login"
 msgstr "Вход"
 
-#: templates/base.html:14
+#: templates/base.html:21
 msgid "Logout"
 msgstr "Выход"
 
-#: templates/base.html:19 templates/user_register.html:4
-#: templates/user_register.html:8
+#: templates/base.html:26 templates/user_register.html:4
 msgid "SingUp"
 msgstr "Регистрация"
+
+#: templates/status_change.html:4 templates/user_change.html:4
+msgid "ChangeUser"
+msgstr "Изменение пользователя"
+
+#: templates/status_create.html:4
+msgid "CreateStatus"
+msgstr "Создание статуса"
+
+#: templates/status_delete.html:4 templates/user_delete.html:4
+msgid "DeleteUser"
+msgstr "Удаление пользователя"

@@ -14,7 +14,10 @@ from .forms import (
     TaskManagerAuthenticationForm,
     TaskManagerChangeUserForm,
     TaskManagerUserCreationForm,
+    StatusCreateForm,
 )
+
+from .models import Status
 
 
 class HomePageView(TemplateView):
@@ -76,3 +79,37 @@ class UserLoginView(SuccessMessageMixin, FormView):
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy("home")
+
+
+class StatusListView(LoginRequiredMixin, ListView):
+    template_name = "status_list.html"
+    model = Status
+
+
+class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
+    template_name = "status_create.html"
+    form_class = StatusCreateForm
+    success_url = reverse_lazy("status_list")
+    success_message = "Your status was created successfully"
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+class StatusChangeView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    model = Status
+    template_name = "status_change.html"
+    form_class = StatusCreateForm
+    success_url = reverse_lazy("status_list")
+    success_message = "Your status was changed successfully"
+
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
+
+
+class StatusDeleteView(LoginRequiredMixin, DeleteView):
+    model = Status
+    success_url = reverse_lazy("status_list")
+    template_name = "status_delete.html"

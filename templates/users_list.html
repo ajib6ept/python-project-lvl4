@@ -2,9 +2,30 @@
 {% load i18n %}
 {% block content %}
 <h1>{% trans 'Users' %}</h1>
-<ul>
-{% for user in object_list %}
-    <li>{{ user }}</li>
-{% endfor %}
-</ul>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Имя пользователя</th>
+        <th scope="col">Полное имя</th>
+        <th scope="col">Дата создания</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for user in object_list %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user }}</td>
+                <td>{{ user.first_name }} {{ user.last_name }}</td>
+                <td>{{ user.date_joined }}</td>
+                <td>
+                    <a href="{% url 'user_chg' pk=user.id %}">Изменить</a><br>
+                    <a href="{% url 'user_del' pk=user.id %}">Удалить</a>
+                </td>
+            </tr>
+       {% endfor %}
+    </tbody>
+  </table>
+  
+
 {% endblock %}

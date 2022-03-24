@@ -1,7 +1,10 @@
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-from django.contrib.auth.models import User
-
+from dataclasses import field
 from django import forms
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.contrib.auth.models import User
+from django.forms import ModelForm
+
+from .models import Status
 
 
 class TaskManagerUserCreationForm(UserCreationForm):
@@ -71,3 +74,14 @@ class TaskManagerChangeUserForm(forms.ModelForm):
         self.fields["password2"].widget.attrs[
             "placeholder"
         ] = "Подтверждение пароля"
+
+
+class StatusCreateForm(ModelForm):
+    class Meta:
+        model = Status
+        fields = ("name",)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["name"].widget.attrs["class"] = "form-control"
+        self.fields["name"].widget.attrs["placeholder"] = "Имя"
