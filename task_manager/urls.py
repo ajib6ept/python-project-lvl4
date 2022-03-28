@@ -15,49 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.urls import include
 from .views import (
     HomePageView,
-    UsersListView,
-    UserCreateView,
-    UserUpdateView,
-    UserDeleteView,
     UserLoginView,
     UserLogoutView,
-    StatusListView,
-    StatusCreateView,
-    StatusChangeView,
-    StatusDeleteView,
 )
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("users/", UsersListView.as_view(), name="users_lists"),
-    path("users/create/", UserCreateView.as_view(), name="register"),
-    path("users/<int:pk>/update/", UserUpdateView.as_view(), name="user_chg"),
-    path("users/<int:pk>/delete/", UserDeleteView.as_view(), name="user_del"),
+    # path("users/", UsersListView.as_view(), name="users_lists"),
+    # path("users/create/", UserCreateView.as_view(), name="register"),
+    # path("users/<int:pk>/update/", UserUpdateView.as_view(), name="user_chg"),
+    # path("users/<int:pk>/delete/", UserDeleteView.as_view(), name="user_del"),
     path("login/", UserLoginView.as_view(), name="user_login"),
     path("logout/", UserLogoutView.as_view(), name="user_logout"),
-    # statuses
-    path("statuses/", StatusListView.as_view(), name="status_list"),
-    path("statuses/create/", StatusCreateView.as_view(), name="status_create"),
-    path(
-        "statuses/<int:pk>/update/",
-        StatusChangeView.as_view(),
-        name="status_chd",
-    ),
-    path(
-        "statuses/<int:pk>/delete/",
-        StatusDeleteView.as_view(),
-        name="status_del",
-    ),
+    path("statuses/", include("task_manager.statuses.urls")),
+    path("users/", include("task_manager.users.urls")),
     path("", HomePageView.as_view(), name="home"),
 ]
-
-
-# GET /statuses/ - страница со списком всех статусов
-# GET /statuses/create/ - страница создания статуса
-# POST /statuses/create/ - создание нового статуса
-# GET /statuses/<int:pk>/update/ - страница редактирования статуса
-# POST /statuses/<int:pk>/update/ - обновление статуса
-# GET /statuses/<int:pk>/delete/ - страница удаления статуса
-# POST /statuses/<int:pk>/delete/ - удаление статуса

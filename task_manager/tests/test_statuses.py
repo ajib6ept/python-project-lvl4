@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.test import Client
 from django.urls import reverse
-from ..models import Status
+from task_manager.statuses.models import Status
 
 
 class StatusCreateChangeDeleteTest(TestCase):
