@@ -11,7 +11,7 @@
         {% if user.is_authenticated %}
             <a class="p-2 text-dark" href="{% url 'status_list' %}">{% trans 'Statuses' %}</a>
             <a class="p-2 text-dark" href="#">{% trans 'Marks' %}</a>
-            <a class="p-2 text-dark" href="#">{% trans 'Tasks' %}</a>
+            <a class="p-2 text-dark" href="{% url 'task_list' %}">{% trans 'Tasks' %}</a>
         {% endif %}
       
         <a class="p-2 text-dark" href="{% url 'users_lists' %}">{% trans 'Users' %}</a>

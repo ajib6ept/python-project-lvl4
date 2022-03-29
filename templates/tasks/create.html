@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+  <h2>{% trans 'CreateTask' %}</h2>
+
+  <form method="post">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputEmail1">Имя</label>
+      {{ form.name }}
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Описание</label>
+        {{ form.description }}
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Статус</label>
+        {{ form.status }}
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Исполнитель</label>
+        {{ form.worker }}
+      </div>
+    <button type="submit" class="btn btn-primary">{% trans 'Create' %}</button>
+  </form>
+
+
+
+
+
+
+{% endblock %}
+
+

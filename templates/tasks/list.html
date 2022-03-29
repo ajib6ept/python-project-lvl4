@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+<h1>{% trans 'Tasks' %}</h1>
+<a href="{% url 'task_create' %}">Создать статус</a>
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Имя</th>
+        <th scope="col">Статус</th>
+        <th scope="col">Автор</th>
+        <th scope="col">Исполнитель</th>
+        <th scope="col">Дата создания</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for obj in object_list %}
+            <tr>
+                <td>{{ obj.id }}</td>
+                <td><a href="{% url 'task_detail' obj.pk %}">{{ obj.name }}</a></td>
+                <td>{{ obj.status }}</td>
+                <td>{{ obj.author }}</td>
+                <td>{{ obj.worker }}</td>
+                <td>{{ obj.date_created }}</td>
+                <td>
+                    <a href="{% url 'task_chd' obj.pk %}">Изменить</a><br>
+                    <a href="{% url 'task_del' obj.pk %}">Удалить</a>
+                </td>
+            </tr>
+       {% endfor %}
+    </tbody>
+  </table>
+
+  
+ 
+
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+  <h2>{% trans 'ViewTask' %}</h2>
+
+<div class="card">
+    <div class="card-header bg-secondary text-white">
+      <h2>{{ object.name }}</h2>
+    </div>
+    <div class="card-body bg-light">
+      <p>{{ object.description }}</p>
+      <hr>
+      <div class="container">
+        <div class="row p-1">
+          <div class="col">Автор</div>
+          <div class="col">{{ object.author.first_name }} {{ object.author.last_name }}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">Исполнитель</div>
+          <div class="col">{{ object.worker.first_name }} {{ object.worker.last_name }}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">Статус</div>
+          <div class="col">{{ object.status }}</div>
+        </div>
+        <div class="row p-1">
+          <div class="col">Дата создания</div>
+          <div class="col">{{ object.date_created }}</div>
+        </div>
+        {% comment %} <div class="row p-1">
+          <div class="col">
+            <h6>Метки:</h6>
+            <ul>
+            </ul>
+          </div>
+        </div> {% endcomment %}
+        <div class="row p-1">
+          <div class="col">
+            <a href="{% url 'task_chd' object.pk %}">Изменить</a>
+            <br>
+            <a href="{% url 'task_del' object.pk %}">Удалить</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock %}
+
+
