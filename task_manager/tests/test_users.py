@@ -3,62 +3,67 @@ from django.contrib.auth.models import User
 from django.test import Client
 from django.urls import reverse
 
+from .factories import UserFactory
+
 
 class UserCreateChangeDeleteTest(TestCase):
     def setUp(self):
         self.client = Client()
-        self.data = {
-            "username": "test_username",
-            "first_name": "test_first_name",
-            "last_name": "test_last_name",
-            "password1": "Qw1234566",
-            "password2": "Qw1234566",
+        self.new_user = UserFactory.build()
+
+    def from_user_factory_item_to_dict(self, item):
+        return {
+            "first_name": item.first_name,
+            "last_name": item.last_name,
+            "username": item.username,
+            "password1": item.password,
+            "password2": item.password,
         }
 
-    def create_test_user(self):
-        return self.client.post(reverse("register"), self.data)
-
     def test_create_user(self):
-        response = self.create_test_user()
+        self.assertEqual(
+            User.objects.filter(username=self.new_user.username).exists(),
+            False,
+        )
+        new_user_dict = self.from_user_factory_item_to_dict(self.new_user)
+        response = self.client.post(reverse("register"), new_user_dict)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
-            User.objects.filter(username=self.data["username"]).exists(), True
+            User.objects.filter(username=self.new_user.username).exists(), True
         )
 
     def test_change_user(self):
-        self.create_test_user()
-        test_user_pk = User.objects.get(username=self.data["username"]).pk
-        new_data = self.data.copy()
-        new_data["username"] = new_data["username"] + "1"
+        change_user = UserFactory()
+        change_user_dict = self.from_user_factory_item_to_dict(change_user)
+        new_username = UserFactory.build().username
+        self.assertNotEqual(change_user.username, new_username)
+        change_user_dict["username"] = new_username
         self.client.post(
-            reverse("user_chg", kwargs={"pk": test_user_pk}), new_data
+            reverse("user_chg", kwargs={"pk": change_user.pk}),
+            change_user_dict,
         )
         self.assertEqual(
-            User.objects.filter(username=self.data["username"]).exists(), True
+            User.objects.filter(username=change_user.username).exists(), True
         )
-        self.client.login(
-            username=self.data["username"], password=self.data["password1"]
-        )
+        self.client.force_login(change_user)
         self.client.post(
-            reverse("user_chg", kwargs={"pk": test_user_pk}), new_data
+            reverse("user_chg", kwargs={"pk": change_user.pk}),
+            change_user_dict,
         )
         self.assertEqual(
-            User.objects.filter(username=self.data["username"]).exists(), False
+            User.objects.filter(username=change_user.username).exists(), False
         )
 
     def test_delete_user(self):
-        self.create_test_user()
-        test_user_pk = User.objects.get(username=self.data["username"]).pk
-        self.client.post(reverse("user_del", kwargs={"pk": test_user_pk}))
+        delete_user = UserFactory()
+        self.client.post(reverse("user_del", kwargs={"pk": delete_user.pk}))
         self.assertEqual(
-            User.objects.filter(username=self.data["username"]).exists(), True
+            User.objects.filter(username=delete_user.username).exists(), True
         )
-        self.client.login(
-            username=self.data["username"], password=self.data["password1"]
-        )
-        self.client.post(reverse("user_del", kwargs={"pk": test_user_pk}))
+        self.client.force_login(delete_user)
+        self.client.post(reverse("user_del", kwargs={"pk": delete_user.pk}))
         self.assertEqual(
-            User.objects.filter(username=self.data["username"]).exists(), False
+            User.objects.filter(username=delete_user.username).exists(), False
         )
 
 
