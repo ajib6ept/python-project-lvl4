@@ -21,7 +21,11 @@
         <label for="exampleInputEmail1">Исполнитель</label>
         {{ form.worker }}
       </div>
-    <button type="submit" class="btn btn-primary">{% trans 'Create' %}</button>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Метки</label>
+        {{ form.label }}
+      </div>
+      <button type="submit" class="btn btn-primary">{% trans 'Create' %}</button>
   </form>
 
 

@@ -1,4 +1,5 @@
 from django.db import models
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from django.contrib.auth.models import User
 
@@ -15,6 +16,7 @@ class Task(models.Model):
     )
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
+    label = models.ManyToManyField(Label)
 
     def __str__(self):
         return self.name
