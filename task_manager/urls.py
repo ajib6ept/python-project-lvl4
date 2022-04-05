@@ -29,5 +29,6 @@ urlpatterns = [
     path("statuses/", include("task_manager.statuses.urls")),
     path("users/", include("task_manager.users.urls")),
     path("tasks/", include("task_manager.tasks.urls")),
+    path("labels/", include("task_manager.labels.urls")),
     path("", HomePageView.as_view(), name="home"),
 ]
