@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from faker import Factory
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
+from task_manager.labels.models import Label
 from django.contrib.auth.hashers import make_password
 
 
@@ -38,3 +39,10 @@ class TaskFactory(factory.django.DjangoModelFactory):
     status = factory.SubFactory(StatusFactory)
     author = factory.SubFactory(UserFactory)
     worker = factory.SubFactory(UserFactory)
+
+
+class LabelFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Label
+
+    name = factory.Sequence(lambda n: "Label%s" % n)

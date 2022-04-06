@@ -4,7 +4,7 @@ from django.urls import reverse
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 
-from .factories import TaskFactory, UserFactory, StatusFactory
+from .factories import TaskFactory, UserFactory, StatusFactory, LabelFactory
 
 
 class TaskCreateChangeDeleteTest(TestCase):
@@ -12,6 +12,7 @@ class TaskCreateChangeDeleteTest(TestCase):
         self.author = UserFactory()
         self.worker = UserFactory()
         self.status = StatusFactory()
+        self.label = LabelFactory()
         self.task = TaskFactory.build()
         self.client = Client()
         self.client.force_login(self.author)
@@ -23,6 +24,7 @@ class TaskCreateChangeDeleteTest(TestCase):
             "description": item.description,
             "status": self.status.pk,
             "worker": self.worker.pk,
+            "label": self.label.pk,
         }
 
     def test_create_task(self):
