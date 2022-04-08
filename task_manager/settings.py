@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 
 import dj_database_url
+import rollbar
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -46,6 +47,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "rollbar.contrib.django.middleware.RollbarNotifierMiddleware",
 ]
 
 ROOT_URLCONF = "task_manager.urls"
@@ -130,3 +132,12 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+ROLLBAR = {
+    "access_token": os.environ.get("ACCESS_TOKEN_ROLLBAR"),
+    "environment": "development" if DEBUG else "production",
+    "root": BASE_DIR,
+}
+
+
+rollbar.init(**ROLLBAR)
