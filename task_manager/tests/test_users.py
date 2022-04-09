@@ -1,9 +1,9 @@
 from django.test import TestCase
-from django.contrib.auth.models import User
 from django.test import Client
 from django.urls import reverse
 
 from .factories import UserFactory
+from task_manager.users.models import TaskUser
 
 
 class UserCreateChangeDeleteTest(TestCase):
@@ -22,14 +22,15 @@ class UserCreateChangeDeleteTest(TestCase):
 
     def test_create_user(self):
         self.assertEqual(
-            User.objects.filter(username=self.new_user.username).exists(),
+            TaskUser.objects.filter(username=self.new_user.username).exists(),
             False,
         )
         new_user_dict = self.from_user_factory_item_to_dict(self.new_user)
         response = self.client.post(reverse("register"), new_user_dict)
         self.assertEqual(response.status_code, 302)
         self.assertEqual(
-            User.objects.filter(username=self.new_user.username).exists(), True
+            TaskUser.objects.filter(username=self.new_user.username).exists(),
+            True,
         )
 
     def test_change_user(self):
@@ -43,7 +44,8 @@ class UserCreateChangeDeleteTest(TestCase):
             change_user_dict,
         )
         self.assertEqual(
-            User.objects.filter(username=change_user.username).exists(), True
+            TaskUser.objects.filter(username=change_user.username).exists(),
+            True,
         )
         self.client.force_login(change_user)
         self.client.post(
@@ -51,19 +53,22 @@ class UserCreateChangeDeleteTest(TestCase):
             change_user_dict,
         )
         self.assertEqual(
-            User.objects.filter(username=change_user.username).exists(), False
+            TaskUser.objects.filter(username=change_user.username).exists(),
+            False,
         )
 
     def test_delete_user(self):
         delete_user = UserFactory()
         self.client.post(reverse("user_del", kwargs={"pk": delete_user.pk}))
         self.assertEqual(
-            User.objects.filter(username=delete_user.username).exists(), True
+            TaskUser.objects.filter(username=delete_user.username).exists(),
+            True,
         )
         self.client.force_login(delete_user)
         self.client.post(reverse("user_del", kwargs={"pk": delete_user.pk}))
         self.assertEqual(
-            User.objects.filter(username=delete_user.username).exists(), False
+            TaskUser.objects.filter(username=delete_user.username).exists(),
+            False,
         )
 
 

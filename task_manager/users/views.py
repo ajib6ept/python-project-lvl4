@@ -1,21 +1,17 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.models import User
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
-from django.views.generic.edit import FormView, UpdateView, DeleteView
+from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
 
-
-from .forms import (
-    TaskManagerChangeUserForm,
-    TaskManagerUserCreationForm,
-)
+from .forms import TaskManagerChangeUserForm, TaskManagerUserCreationForm
+from .models import TaskUser
 
 
 class UsersListView(ListView):
     template_name = "users/list.html"
-    model = User
+    model = TaskUser
 
 
 class UserCreateView(SuccessMessageMixin, FormView):
@@ -30,7 +26,7 @@ class UserCreateView(SuccessMessageMixin, FormView):
 
 
 class UserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
-    model = User
+    model = TaskUser
     template_name = "users/change.html"
     form_class = TaskManagerChangeUserForm
     success_url = reverse_lazy("users_lists")
@@ -44,7 +40,7 @@ class UserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
 
 
 class UserDeleteView(DeleteView):
-    model = User
+    model = TaskUser
     success_url = reverse_lazy("users_lists")
     template_name = "users/delete.html"
 

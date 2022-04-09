@@ -1,7 +1,7 @@
 from django.db import models
 from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
-from django.contrib.auth.models import User
+from task_manager.users.models import TaskUser
 
 
 class Task(models.Model):
@@ -9,10 +9,10 @@ class Task(models.Model):
     description = models.TextField()
     status = models.ForeignKey(Status, on_delete=models.CASCADE)
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="author"
+        TaskUser, on_delete=models.CASCADE, related_name="author"
     )
     worker = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name="worker"
+        TaskUser, on_delete=models.CASCADE, related_name="worker"
     )
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)

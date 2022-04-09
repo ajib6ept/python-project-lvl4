@@ -1,11 +1,12 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.contrib.auth.models import User
+
+from .models import TaskUser
 
 
 class TaskManagerUserCreationForm(UserCreationForm):
     class Meta:
-        model = User
+        model = TaskUser
         fields = (
             "username",
             "first_name",
@@ -51,7 +52,7 @@ class TaskManagerChangeUserForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
-        model = User
+        model = TaskUser
         fields = (
             "username",
             "first_name",

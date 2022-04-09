@@ -1,21 +1,20 @@
 import factory
-from django.contrib.auth import get_user_model
 from faker import Factory
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 from task_manager.labels.models import Label
+from task_manager.users.models import TaskUser
 from django.contrib.auth.hashers import make_password
 
 
-User = get_user_model()
 faker = Factory.create()
 
 
 class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
-        model = User
+        model = TaskUser
 
-    email = faker.email()
+    # email = faker.email()
 
     first_name = factory.Faker("first_name")
     last_name = factory.Faker("last_name")

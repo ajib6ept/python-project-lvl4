@@ -35,8 +35,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "bootstrap4",
-    "task_manager",
     "django_filters",
+    "task_manager",
+    "task_manager.users",
 ]
 
 MIDDLEWARE = [
@@ -101,6 +102,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = "users.TaskUser"
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
