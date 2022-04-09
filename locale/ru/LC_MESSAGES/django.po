@@ -44,7 +44,7 @@ msgstr "Пользователи"
 #: templates/base.html:19 templates/user_login.html:4
 #: templates/user_login.html:8
 msgid "Login"
-msgstr "Вход"
+msgstr "Войти"
 
 #: templates/base.html:21
 msgid "Logout"
