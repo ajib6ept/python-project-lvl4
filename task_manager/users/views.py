@@ -18,7 +18,7 @@ class UserCreateView(SuccessMessageMixin, FormView):
     template_name = "users/register.html"
     form_class = TaskManagerUserCreationForm
     success_url = reverse_lazy("user_login")
-    success_message = "Your profile was created successfully"
+    success_message = "Пользователь успешно зарегистрирован"
 
     def form_valid(self, form):
         form.save()
@@ -30,7 +30,7 @@ class UserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     template_name = "users/change.html"
     form_class = TaskManagerChangeUserForm
     success_url = reverse_lazy("users_lists")
-    success_message = "Your profile was created successfully"
+    success_message = "Пользователь успешно изменён"
 
     def dispatch(self, *args, **kwargs):
         obj = self.get_object()

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-03-23 06:50+0300\n"
+"POT-Creation-Date: 2022-04-10 17:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "TaskManager"
 msgstr "Менеджер задач"
 
-#: templates/base.html:12
+#: templates/base.html:12 templates/statuses/list.html:4
 msgid "Statuses"
 msgstr "Статусы"
 
@@ -32,36 +32,108 @@ msgstr "Статусы"
 msgid "Marks"
 msgstr "Метки"
 
-#: templates/base.html:14
+#: templates/base.html:14 templates/tasks/list.html:4
 msgid "Tasks"
 msgstr "Задачи"
 
-#: templates/base.html:17 templates/status_list.html:4
-#: templates/users_list.html:4
+#: templates/base.html:17 templates/users/list.html:4
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/base.html:19 templates/user_login.html:4
-#: templates/user_login.html:8
+#: templates/base.html:19 templates/users/login.html:4
 msgid "Login"
-msgstr "Войти"
+msgstr "Вход"
 
 #: templates/base.html:21
 msgid "Logout"
 msgstr "Выход"
 
-#: templates/base.html:26 templates/user_register.html:4
+#: templates/base.html:26 templates/users/register.html:4
 msgid "SingUp"
 msgstr "Регистрация"
 
-#: templates/status_change.html:4 templates/user_change.html:4
-msgid "ChangeUser"
+#: templates/labels/change.html:4
+#, fuzzy
+#| msgid "ChangeUser"
+msgid "ChangeLabel"
 msgstr "Изменение пользователя"
 
-#: templates/status_create.html:4
+#: templates/labels/create.html:4
+#, fuzzy
+#| msgid "CreateStatus"
+msgid "CreateLabel"
+msgstr "Создание статуса"
+
+#: templates/labels/delete.html:4
+#, fuzzy
+#| msgid "DeleteUser"
+msgid "DeleteLabel"
+msgstr "Удаление пользователя"
+
+#: templates/labels/list.html:4
+msgid "Labels"
+msgstr ""
+
+#: templates/statuses/change.html:4
+#, fuzzy
+#| msgid "CreateStatus"
+msgid "ChangeStatus"
+msgstr "Создание статуса"
+
+#: templates/statuses/create.html:4
 msgid "CreateStatus"
 msgstr "Создание статуса"
 
-#: templates/status_delete.html:4 templates/user_delete.html:4
+#: templates/statuses/delete.html:4
+#, fuzzy
+#| msgid "CreateStatus"
+msgid "DeleteStatus"
+msgstr "Создание статуса"
+
+#: templates/tasks/change.html:4
+#, fuzzy
+#| msgid "ChangeUser"
+msgid "ChangeTask"
+msgstr "Изменение пользователя"
+
+#: templates/tasks/change.html:28
+#, fuzzy
+#| msgid "ChangeUser"
+msgid "Change"
+msgstr "Изменение пользователя"
+
+#: templates/tasks/create.html:4
+#, fuzzy
+#| msgid "CreateStatus"
+msgid "CreateTask"
+msgstr "Создание статуса"
+
+#: templates/tasks/create.html:28
+#, fuzzy
+#| msgid "CreateStatus"
+msgid "Create"
+msgstr "Создание статуса"
+
+#: templates/tasks/delete.html:4
+#, fuzzy
+#| msgid "DeleteUser"
+msgid "DeleteTask"
+msgstr "Удаление пользователя"
+
+#: templates/tasks/detail.html:4
+#, fuzzy
+#| msgid "Tasks"
+msgid "ViewTask"
+msgstr "Задачи"
+
+#: templates/users/change.html:4
+msgid "ChangeUser"
+msgstr "Изменение пользователя"
+
+#: templates/users/delete.html:4
 msgid "DeleteUser"
 msgstr "Удаление пользователя"
+
+#: templates/users/login.html:16
+msgid "Log_in"
+msgstr "Войти"
