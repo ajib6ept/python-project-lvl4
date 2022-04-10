@@ -16,7 +16,7 @@
             <tr>
                 <td>{{ obj.id }}</td>
                 <td>{{ obj.name }}</td>
-                <td>{{ obj.date_created }}</td>
+                <td>{{ obj.date_created |date:"d.m.Y H:i"}}</td>
                 <td>
                     <a href="{% url 'label_chd' obj.pk %}">Изменить</a><br>
                     <a href="{% url 'label_del' obj.pk %}">Удалить</a>

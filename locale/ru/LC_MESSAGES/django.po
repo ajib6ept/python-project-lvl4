@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-04-10 17:33+0300\n"
+"POT-Creation-Date: 2022-04-10 18:19+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,37 +20,33 @@ msgstr ""
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
 
-#: templates/base.html:8
+#: templates/base.html:14
 msgid "TaskManager"
 msgstr "Менеджер задач"
 
-#: templates/base.html:12 templates/statuses/list.html:4
-msgid "Statuses"
-msgstr "Статусы"
-
-#: templates/base.html:13
-msgid "Marks"
-msgstr "Метки"
-
-#: templates/base.html:14 templates/tasks/list.html:4
-msgid "Tasks"
-msgstr "Задачи"
-
-#: templates/base.html:17 templates/users/list.html:4
+#: templates/base.html:21 templates/users/list.html:4
 msgid "Users"
 msgstr "Пользователи"
 
-#: templates/base.html:19 templates/users/login.html:4
-msgid "Login"
-msgstr "Вход"
+#: templates/base.html:25 templates/statuses/list.html:4
+msgid "Statuses"
+msgstr "Статусы"
 
-#: templates/base.html:21
+#: templates/base.html:28 templates/labels/list.html:4
+msgid "Labels"
+msgstr "Метки"
+
+#: templates/base.html:31 templates/tasks/list.html:4
+msgid "Tasks"
+msgstr "Задачи"
+
+#: templates/base.html:38 templates/base.html:45
 msgid "Logout"
 msgstr "Выход"
 
-#: templates/base.html:26 templates/users/register.html:4
-msgid "SingUp"
-msgstr "Регистрация"
+#: templates/base.html:42 templates/users/login.html:4
+msgid "Login"
+msgstr "Вход"
 
 #: templates/labels/change.html:4
 #, fuzzy
@@ -69,10 +65,6 @@ msgstr "Создание статуса"
 #| msgid "DeleteUser"
 msgid "DeleteLabel"
 msgstr "Удаление пользователя"
-
-#: templates/labels/list.html:4
-msgid "Labels"
-msgstr ""
 
 #: templates/statuses/change.html:4
 #, fuzzy
@@ -137,3 +129,10 @@ msgstr "Удаление пользователя"
 #: templates/users/login.html:16
 msgid "Log_in"
 msgstr "Войти"
+
+#: templates/users/register.html:4
+msgid "SingUp"
+msgstr "Регистрация"
+
+#~ msgid "Marks"
+#~ msgstr "Метки"

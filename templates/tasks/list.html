@@ -2,7 +2,7 @@
 {% load i18n %}
 {% block content %}
 <h1>{% trans 'Tasks' %}</h1>
-<a href="{% url 'task_create' %}">Создать статус</a>
+<a href="{% url 'task_create' %}">Создать задачу</a>
 
 
 
@@ -59,7 +59,7 @@
                 <td>{{ obj.status }}</td>
                 <td>{{ obj.author }}</td>
                 <td>{{ obj.worker }}</td>
-                <td>{{ obj.date_created }}</td>
+                <td>{{ obj.date_created |date:"d.m.Y H:i"}}</td>
                 <td>
                     <a href="{% url 'task_chd' obj.pk %}">Изменить</a><br>
                     <a href="{% url 'task_del' obj.pk %}">Удалить</a>

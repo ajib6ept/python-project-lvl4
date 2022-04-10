@@ -4,6 +4,8 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
+from django.contrib import messages
+
 
 from .forms import TaskManagerChangeUserForm, TaskManagerUserCreationForm
 from .models import TaskUser
@@ -32,11 +34,14 @@ class UserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
     success_url = reverse_lazy("users_lists")
     success_message = "Пользователь успешно изменён"
 
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj != self.request.user:
-            return redirect("user_login")
-        return super().dispatch(*args, **kwargs)
+            messages.error(
+                request, "У вас нет прав для изменения другого пользователя."
+            )
+            return redirect("users_lists")
+        return super().dispatch(request, *args, **kwargs)
 
 
 class UserDeleteView(DeleteView):
@@ -44,8 +49,11 @@ class UserDeleteView(DeleteView):
     success_url = reverse_lazy("users_lists")
     template_name = "users/delete.html"
 
-    def dispatch(self, *args, **kwargs):
+    def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj != self.request.user:
-            return redirect("user_login")
-        return super().dispatch(*args, **kwargs)
+            messages.error(
+                request, "У вас нет прав для изменения другого пользователя."
+            )
+            return redirect("users_lists")
+        return super().dispatch(request, *args, **kwargs)

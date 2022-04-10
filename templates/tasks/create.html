@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n %}
 {% block content %}
-  <h2>{% trans 'CreateTask' %}</h2>
+  <h2>Создать задачу</h2>
 
   <form method="post">
     {% csrf_token %}
@@ -25,7 +25,7 @@
         <label for="exampleInputEmail1">Метки</label>
         {{ form.label }}
       </div>
-      <button type="submit" class="btn btn-primary">{% trans 'Create' %}</button>
+      <button type="submit" class="btn btn-primary">Создать</button>
   </form>
 
 

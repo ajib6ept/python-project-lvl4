@@ -7,8 +7,9 @@
     <thead>
       <tr>
         <th scope="col">ID</th>
-        <th scope="col">Имя пользователя</th>
+        <th scope="col">Имя</th>
         <th scope="col">Дата создания</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +17,7 @@
             <tr>
                 <td>{{ obj.id }}</td>
                 <td>{{ obj.name }}</td>
-                <td>{{ obj.date_created }}</td>
+                <td>{{ obj.date_created|date:"d.m.Y H:i"}}</td>
                 <td>
                     <a href="{% url 'status_chd' obj.pk %}">Изменить</a><br>
                     <a href="{% url 'status_del' obj.pk %}">Удалить</a>
