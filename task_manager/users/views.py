@@ -44,10 +44,11 @@ class UserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class UserDeleteView(DeleteView):
+class UserDeleteView(SuccessMessageMixin, DeleteView):
     model = TaskUser
     success_url = reverse_lazy("users_lists")
     template_name = "users/delete.html"
+    success_message = "Пользователь успешно удалён"
 
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
