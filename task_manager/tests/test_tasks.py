@@ -10,7 +10,7 @@ from .factories import TaskFactory, UserFactory, StatusFactory, LabelFactory
 class TaskCreateChangeDeleteTest(TestCase):
     def setUp(self):
         self.author = UserFactory()
-        self.worker = UserFactory()
+        self.executor = UserFactory()
         self.status = StatusFactory()
         self.label = LabelFactory()
         self.task = TaskFactory.build()
@@ -23,7 +23,7 @@ class TaskCreateChangeDeleteTest(TestCase):
             "name": item.name,
             "description": item.description,
             "status": self.status.pk,
-            "worker": self.worker.pk,
+            "executor": self.executor.pk,
             "label": self.label.pk,
         }
 

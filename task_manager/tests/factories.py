@@ -37,7 +37,7 @@ class TaskFactory(factory.django.DjangoModelFactory):
     description = faker.text()
     status = factory.SubFactory(StatusFactory)
     author = factory.SubFactory(UserFactory)
-    worker = factory.SubFactory(UserFactory)
+    executor = factory.SubFactory(UserFactory)
 
 
 class LabelFactory(factory.django.DjangoModelFactory):

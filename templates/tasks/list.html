@@ -16,9 +16,9 @@
         </div>
     </div>
     <div class="form-group">
-      <label for="id_worker">Исполнитель</label>
+      <label for="id_executor">Исполнитель</label>
       <div class="mr-3 ml-2">
-        {{ filter.form.worker }}
+        {{ filter.form.executor }}
       </div>
     </div>
     <div class="form-group">
@@ -58,7 +58,7 @@
                 <td><a href="{% url 'task_detail' obj.pk %}">{{ obj.name }}</a></td>
                 <td>{{ obj.status }}</td>
                 <td>{{ obj.author }}</td>
-                <td>{{ obj.worker }}</td>
+                <td>{{ obj.executor }}</td>
                 <td>{{ obj.date_created |date:"d.m.Y H:i"}}</td>
                 <td>
                     <a href="{% url 'task_chd' obj.pk %}">Изменить</a><br>

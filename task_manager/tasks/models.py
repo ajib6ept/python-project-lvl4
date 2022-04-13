@@ -11,8 +11,8 @@ class Task(models.Model):
     author = models.ForeignKey(
         TaskUser, on_delete=models.CASCADE, related_name="author"
     )
-    worker = models.ForeignKey(
-        TaskUser, on_delete=models.CASCADE, related_name="worker"
+    executor = models.ForeignKey(
+        TaskUser, on_delete=models.CASCADE, related_name="executor"
     )
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
