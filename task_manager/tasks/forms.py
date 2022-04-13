@@ -6,7 +6,7 @@ from .models import Task
 class TaskCreateForm(ModelForm):
     class Meta:
         model = Task
-        fields = ("name", "description", "status", "executor", "label")
+        fields = ("name", "description", "status", "executor", "labels")
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -16,4 +16,4 @@ class TaskCreateForm(ModelForm):
         self.fields["description"].widget.attrs["placeholder"] = "Описание"
         self.fields["status"].widget.attrs["class"] = "form-control"
         self.fields["executor"].widget.attrs["class"] = "form-control"
-        self.fields["label"].widget.attrs["class"] = "form-control"
+        self.fields["labels"].widget.attrs["class"] = "form-control"

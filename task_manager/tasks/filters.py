@@ -7,7 +7,7 @@ from .models import Task
 
 class TaskFilter(django_filters.FilterSet):
 
-    label = django_filters.ModelChoiceFilter(queryset=Label.objects.all())
+    labels = django_filters.ModelChoiceFilter(queryset=Label.objects.all())
     self_tasks = django_filters.BooleanFilter(
         widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
         method="self_task",
@@ -22,4 +22,4 @@ class TaskFilter(django_filters.FilterSet):
 
     class Meta:
         model = Task
-        fields = ["status", "executor", "label"]
+        fields = ["status", "executor", "labels"]
