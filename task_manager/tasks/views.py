@@ -5,7 +5,6 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView, UpdateView
-from django.views.generic.list import ListView
 from django_filters.views import FilterView
 
 from .filters import TaskFilter

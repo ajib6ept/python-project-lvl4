@@ -1,10 +1,8 @@
-from django.test import TestCase
-from django.test import Client
+from django.test import Client, TestCase
 from django.urls import reverse
-from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
 
-from .factories import TaskFactory, UserFactory, StatusFactory, LabelFactory
+from .factories import LabelFactory, StatusFactory, TaskFactory, UserFactory
 
 
 class TaskCreateChangeDeleteTest(TestCase):

@@ -1,13 +1,11 @@
-from django.views.generic.list import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
 
-from .models import Label
 from .forms import LabelCreateForm
+from .models import Label
 
 
 class LabelListView(ListView):
