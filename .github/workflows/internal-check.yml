@@ -20,9 +20,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install poetry
           make install
-          export ACCESS_TOKEN_ROLLBAR=${{ secrets.ACCESS_TOKEN_ROLLBAR }}
-          export SECRET_KEY=${{ secrets.SECRET_KEY }}
       - name: linter
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          ACCESS_TOKEN_ROLLBAR: ${{ secrets.ACCESS_TOKEN_ROLLBAR }}
         run: |
           make lint
       - name: tests
