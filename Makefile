@@ -12,6 +12,9 @@ i18n_compile:
 lint:
 	poetry run flake8 task_manager --exclude=migrations,task_manager/settings.py
 
+migrate:
+	poetry run python manage.py migrate
+
 start_server:
 	poetry run python manage.py runserver 127.0.0.1:8000
 
