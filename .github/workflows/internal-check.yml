@@ -23,7 +23,6 @@ jobs:
       - name: linter and tests
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
-          ACCESS_TOKEN_ROLLBAR: ${{ secrets.ACCESS_TOKEN_ROLLBAR }}
         run: |
           make lint
           make test
@@ -31,5 +30,6 @@ jobs:
         uses: paambaati/codeclimate-action@v2.7.4
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         with:
           coverageCommand: make test_coverage
