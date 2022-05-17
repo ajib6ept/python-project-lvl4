@@ -1,18 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% load i18n %}
 {% block content %}
-  <h2>Создать метку</h2>
-
+  <h2>{% trans 'Create Label' %}</h2>
   <form method="post">
     {% csrf_token %}
     <div class="form-group">
-      <label for="id_name">Имя</label>
+      <label for="id_name">{% trans 'Name' %}</label>
       {{ form.name }}
     </div>
-    <button type="submit" class="btn btn-primary">Создать</button>
+    <button type="submit" class="btn btn-primary">{% trans 'Create' %}</button>
   </form>
-
-
-
 {% endblock %}
 

@@ -1,31 +1,29 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% load i18n %}
 {% block content %}
 <h1>{% trans 'Statuses' %}</h1>
-<a href="{% url 'status_create' %}">Создать статус</a>
+<a href="{% url 'status_create' %}">{% trans 'Create Status' %}</a>
 <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Имя</th>
-        <th scope="col">Дата создания</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-        {% for obj in object_list %}
-            <tr>
-                <td>{{ obj.id }}</td>
-                <td>{{ obj.name }}</td>
-                <td>{{ obj.date_created|date:"d.m.Y H:i"}}</td>
-                <td>
-                    <a href="{% url 'status_chd' obj.pk %}">Изменить</a><br>
-                    <a href="{% url 'status_del' obj.pk %}">Удалить</a>
-                </td>
-            </tr>
-       {% endfor %}
-    </tbody>
-  </table>
-  
-
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">{% trans 'Name' %}</th>
+      <th scope="col">{% trans 'Date of creation' %}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+      {% for obj in object_list %}
+          <tr>
+              <td>{{ obj.id }}</td>
+              <td>{{ obj.name }}</td>
+              <td>{{ obj.date_created|date:"d.m.Y H:i"}}</td>
+              <td>
+                  <a href="{% url 'status_chd' obj.pk %}">{% trans 'Change' %}</a><br>
+                  <a href="{% url 'status_del' obj.pk %}">{% trans 'Delete' %}</a>
+              </td>
+          </tr>
+      {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

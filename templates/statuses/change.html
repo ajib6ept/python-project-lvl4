@@ -1,17 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% load i18n %}
 {% block content %}
-  <h2>Изменение статуса</h2>
-  <form method="post">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="id_name">Имя</label>
-      {{ form.name }}
-    </div>
-    <button type="submit" class="btn btn-primary">Изменить</button>
-  </form>
-
-
-
+<h2>{% trans 'Change Status' %}</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+    <label for="id_name">{% trans 'Name' %}</label>
+    {{ form.name }}
+  </div>
+  <button type="submit" class="btn btn-primary">{% trans 'Change' %}</button>
+</form>
 {% endblock %}
 

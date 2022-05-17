@@ -1,19 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'home.html' %}
 {% load i18n %}
 {% block content %}
-  <h2>{% trans 'Login' %}</h2>
-  <form method="post">
-    {% csrf_token %}
+<h2>{% trans 'Login' %}</h2>
+<form method="post">
+  {% csrf_token %}
+  <div class="form-group">
+      <label for="id_username">{% trans 'Username' %}</label>
+      {{ form.username }}
+  </div>
+  <div class="form-group">
+    <label for="id_password">{% trans 'Password' %}</label>
+      {{ form.password }}
+  </div>
     <div class="form-group">
-        <label for="id_username">Имя пользователя</label>
-        {{ form.username }}
-    </div>
-    <div class="form-group">
-      <label for="id_password">Пароль</label>
-        {{ form.password }}
-    </div>
-      <div class="form-group">
-      <input class="btn btn-primary" type="submit" value="{% trans 'Log_in' %}">
-    </div>
-  </form>
+    <input class="btn btn-primary" type="submit" value="{% trans 'Log_in' %}">
+  </div>
+</form>
  {% endblock %}
