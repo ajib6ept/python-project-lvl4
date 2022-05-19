@@ -1,13 +1,11 @@
 from django.contrib.messages.views import SuccessMessageMixin
-from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
 
-
 from .forms import TaskManagerChangeUserForm, TaskManagerUserCreationForm
-from .models import TaskUser
 from .mixins import TaskUserAuthorizationMixin
+from .models import TaskUser
 
 
 class UsersListView(ListView):
