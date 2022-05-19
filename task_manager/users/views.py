@@ -1,14 +1,13 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
-from django.contrib import messages
 
 
 from .forms import TaskManagerChangeUserForm, TaskManagerUserCreationForm
 from .models import TaskUser
+from .mixins import TaskUserAuthorizationMixin
 
 
 class UsersListView(ListView):
@@ -27,34 +26,20 @@ class UserCreateView(SuccessMessageMixin, FormView):
         return super().form_valid(form)
 
 
-class UserUpdateView(SuccessMessageMixin, LoginRequiredMixin, UpdateView):
+class UserUpdateView(
+    SuccessMessageMixin, TaskUserAuthorizationMixin, UpdateView
+):
     model = TaskUser
     template_name = "users/change.html"
     form_class = TaskManagerChangeUserForm
     success_url = reverse_lazy("users_lists")
     success_message = "Пользователь успешно изменён"
 
-    def dispatch(self, request, *args, **kwargs):
-        obj = self.get_object()
-        if obj != self.request.user:
-            messages.error(
-                request, "У вас нет прав для изменения другого пользователя."
-            )
-            return redirect("users_lists")
-        return super().dispatch(request, *args, **kwargs)
 
-
-class UserDeleteView(SuccessMessageMixin, DeleteView):
+class UserDeleteView(
+    SuccessMessageMixin, TaskUserAuthorizationMixin, DeleteView
+):
     model = TaskUser
     success_url = reverse_lazy("users_lists")
     template_name = "users/delete.html"
     success_message = "Пользователь успешно удалён"
-
-    def dispatch(self, request, *args, **kwargs):
-        obj = self.get_object()
-        if obj != self.request.user:
-            messages.error(
-                request, "У вас нет прав для изменения другого пользователя."
-            )
-            return redirect("users_lists")
-        return super().dispatch(request, *args, **kwargs)
