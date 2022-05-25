@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-25 06:23+0300\n"
+"POT-Creation-Date: 2022-05-25 06:44+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,11 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: task_manager/labels/forms.py:15 task_manager/statuses/forms.py:15
+#: task_manager/tasks/forms.py:15 task_manager/users/forms.py:27
+msgid "Имя"
+msgstr ""
 
 #: task_manager/labels/views.py:21
 msgid "Метка успешно создана"
@@ -44,6 +49,10 @@ msgstr ""
 msgid "Статус успешно удалён"
 msgstr ""
 
+#: task_manager/tasks/forms.py:17
+msgid "Описание"
+msgstr ""
+
 #: task_manager/tasks/views.py:26
 msgid "Задача успешно создана"
 msgstr ""
@@ -60,15 +69,38 @@ msgstr ""
 msgid "Задачу может удалить только её автор"
 msgstr ""
 
-#: task_manager/users/views.py:21
+#: task_manager/users/forms.py:24 task_manager/users/forms.py:44
+msgid "Имя пользователя"
+msgstr ""
+
+#: task_manager/users/forms.py:29
+msgid "Фамилия"
+msgstr ""
+
+#: task_manager/users/forms.py:31 task_manager/users/forms.py:47
+#: task_manager/users/forms.py:70
+msgid "Пароль"
+msgstr ""
+
+#: task_manager/users/forms.py:34 task_manager/users/forms.py:73
+msgid "Подтверждение пароля"
+msgstr ""
+
+#: task_manager/users/views.py:22
 msgid "Пользователь успешно зарегистрирован"
 msgstr ""
 
-#: task_manager/users/views.py:35
-msgid "Пользователь успешно изменён"
+#: task_manager/users/views.py:30
+msgid ""
+"Пожалуйста, проверьте правильность заполнения полей.             Поля могут "
+"быть чувствительны к регистру."
 msgstr ""
 
 #: task_manager/users/views.py:44
+msgid "Пользователь успешно изменён"
+msgstr ""
+
+#: task_manager/users/views.py:53
 msgid "Пользователь успешно удалён"
 msgstr ""
 
