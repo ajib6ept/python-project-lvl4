@@ -3,6 +3,7 @@ from django.contrib.auth import login
 from django.contrib.auth.views import LogoutView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 
@@ -17,18 +18,18 @@ class UserLoginView(SuccessMessageMixin, FormView):
     template_name = "users/login.html"
     success_url = reverse_lazy("home")
     form_class = TaskManagerAuthenticationForm
-    success_message = "Вы залогинены"
+    success_message = _("Вы залогинены")
 
     def form_valid(self, form):
         login(self.request, form.get_user())
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        messages.error(
-            self.request,
+        error_message = _(
             "Пожалуйста, введите правильные имя пользователя и пароль. \
-            Оба поля могут быть чувствительны к регистру.",
+            Оба поля могут быть чувствительны к регистру."
         )
+        messages.error(self.request, error_message)
         return super().form_invalid(form)
 
 

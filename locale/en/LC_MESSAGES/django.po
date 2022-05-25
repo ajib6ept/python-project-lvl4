@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-16 07:08+0300\n"
+"POT-Creation-Date: 2022-05-25 06:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,70 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: task_manager/labels/views.py:21
+msgid "Метка успешно создана"
+msgstr "Label was created successfully"
+
+#: task_manager/labels/views.py:33
+msgid "Метка успешно изменена"
+msgstr "Label changed successfully"
+
+#: task_manager/labels/views.py:44
+msgid "Метка успешно удалена"
+msgstr "Label was deleted successfully"
+
+#: task_manager/statuses/views.py:21
+msgid "Статус успешно создан"
+msgstr "Status was created successfully"
+
+#: task_manager/statuses/views.py:33
+msgid "Статус успешно изменён"
+msgstr "Status changed successfully"
+
+#: task_manager/statuses/views.py:44
+msgid "Статус успешно удалён"
+msgstr "Status was deleted successfully"
+
+#: task_manager/tasks/views.py:26
+msgid "Задача успешно создана"
+msgstr "Task was created successfully"
+
+#: task_manager/tasks/views.py:39
+msgid "Задача успешно изменена"
+msgstr "Task changed successfully"
+
+#: task_manager/tasks/views.py:50
+msgid "Задача успешно удалена"
+msgstr "Task was deleted successfully"
+
+#: task_manager/tasks/views.py:55
+msgid "Задачу может удалить только её автор"
+msgstr "Task can only be deleted by its author"
+
+#: task_manager/users/views.py:21
+msgid "Пользователь успешно зарегистрирован"
+msgstr "User successfully registered"
+
+#: task_manager/users/views.py:35
+msgid "Пользователь успешно изменён"
+msgstr "User changed successfully"
+
+#: task_manager/users/views.py:44
+msgid "Пользователь успешно удалён"
+msgstr "User was deleted successfully"
+
+#: task_manager/views.py:21
+msgid "Вы залогинены"
+msgstr "You are logged in"
+
+#: task_manager/views.py:29
+msgid ""
+"Пожалуйста, введите правильные имя пользователя и пароль.             Оба "
+"поля могут быть чувствительны к регистру."
+msgstr ""
+"Please enter the correct username and password. Both fields can be case "
+"sensitive."
 
 #: templates/home.html:5
 #, fuzzy

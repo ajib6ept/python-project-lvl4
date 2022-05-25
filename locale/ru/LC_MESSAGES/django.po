@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-16 07:07+0300\n"
+"POT-Creation-Date: 2022-05-25 06:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,68 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: task_manager/labels/views.py:21
+msgid "Метка успешно создана"
+msgstr ""
+
+#: task_manager/labels/views.py:33
+msgid "Метка успешно изменена"
+msgstr ""
+
+#: task_manager/labels/views.py:44
+msgid "Метка успешно удалена"
+msgstr ""
+
+#: task_manager/statuses/views.py:21
+msgid "Статус успешно создан"
+msgstr ""
+
+#: task_manager/statuses/views.py:33
+msgid "Статус успешно изменён"
+msgstr ""
+
+#: task_manager/statuses/views.py:44
+msgid "Статус успешно удалён"
+msgstr ""
+
+#: task_manager/tasks/views.py:26
+msgid "Задача успешно создана"
+msgstr ""
+
+#: task_manager/tasks/views.py:39
+msgid "Задача успешно изменена"
+msgstr ""
+
+#: task_manager/tasks/views.py:50
+msgid "Задача успешно удалена"
+msgstr ""
+
+#: task_manager/tasks/views.py:55
+msgid "Задачу может удалить только её автор"
+msgstr ""
+
+#: task_manager/users/views.py:21
+msgid "Пользователь успешно зарегистрирован"
+msgstr ""
+
+#: task_manager/users/views.py:35
+msgid "Пользователь успешно изменён"
+msgstr ""
+
+#: task_manager/users/views.py:44
+msgid "Пользователь успешно удалён"
+msgstr ""
+
+#: task_manager/views.py:21
+msgid "Вы залогинены"
+msgstr ""
+
+#: task_manager/views.py:29
+msgid ""
+"Пожалуйста, введите правильные имя пользователя и пароль.             Оба "
+"поля могут быть чувствительны к регистру."
+msgstr ""
 
 #: templates/home.html:5
 #, fuzzy
@@ -238,7 +300,8 @@ msgstr "Пользователи"
 msgid ""
 "Required field. No more than 150 characters. Only letters, numbers and "
 "symbols "
-msgstr "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы"
+msgstr ""
+"Обязательное поле. Не более 150 символов. Только буквы, цифры и символы"
 
 #: templates/users/change.html:21 templates/users/login.html:12
 #: templates/users/register.html:21

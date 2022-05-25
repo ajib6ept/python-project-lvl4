@@ -1,6 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
 
@@ -17,7 +18,7 @@ class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
     template_name = "statuses/create.html"
     form_class = StatusCreateForm
     success_url = reverse_lazy("status_list")
-    success_message = "Статус успешно создан"
+    success_message = _("Статус успешно создан")
 
     def form_valid(self, form):
         form.save()
@@ -29,7 +30,7 @@ class StatusChangeView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = "statuses/change.html"
     form_class = StatusCreateForm
     success_url = reverse_lazy("status_list")
-    success_message = "Статус успешно изменён"
+    success_message = _("Статус успешно изменён")
 
     def form_valid(self, form):
         form.save()
@@ -40,4 +41,4 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Status
     success_url = reverse_lazy("status_list")
     template_name = "statuses/delete.html"
-    success_message = "Статус успешно удалён"
+    success_message = _("Статус успешно удалён")

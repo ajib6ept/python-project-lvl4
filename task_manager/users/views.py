@@ -1,5 +1,6 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
 
@@ -17,7 +18,7 @@ class UserCreateView(SuccessMessageMixin, FormView):
     template_name = "users/register.html"
     form_class = TaskManagerUserCreationForm
     success_url = reverse_lazy("user_login")
-    success_message = "Пользователь успешно зарегистрирован"
+    success_message = _("Пользователь успешно зарегистрирован")
 
     def form_valid(self, form):
         form.save()
@@ -31,7 +32,7 @@ class UserUpdateView(
     template_name = "users/change.html"
     form_class = TaskManagerChangeUserForm
     success_url = reverse_lazy("users_lists")
-    success_message = "Пользователь успешно изменён"
+    success_message = _("Пользователь успешно изменён")
 
 
 class UserDeleteView(
@@ -40,4 +41,4 @@ class UserDeleteView(
     model = TaskUser
     success_url = reverse_lazy("users_lists")
     template_name = "users/delete.html"
-    success_message = "Пользователь успешно удалён"
+    success_message = _("Пользователь успешно удалён")
