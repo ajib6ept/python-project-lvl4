@@ -269,7 +269,7 @@ msgstr "Автор"
 
 #: templates/tasks/list.html:22
 msgid "Label"
-msgstr "Метки"
+msgstr "Метка"
 
 #: templates/tasks/list.html:30
 msgid "Only my tasks"
