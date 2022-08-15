@@ -115,8 +115,6 @@ msgid ""
 msgstr ""
 
 #: templates/home.html:5
-#, fuzzy
-#| msgid "TaskManager"
 msgid "Task Manager Hexlet"
 msgstr "Менеджер задач"
 
@@ -167,10 +165,8 @@ msgid "To learn more"
 msgstr "Узнать больше"
 
 #: templates/labels/change.html:4
-#, fuzzy
-#| msgid "ChangeUser"
 msgid "Chang Label"
-msgstr "Изменение пользователя"
+msgstr "Изменение метки"
 
 #: templates/labels/change.html:8 templates/labels/create.html:8
 #: templates/labels/list.html:10 templates/statuses/change.html:8
@@ -185,29 +181,21 @@ msgstr "Имя"
 #: templates/tasks/change.html:27 templates/tasks/detail.html:42
 #: templates/tasks/list.html:61 templates/users/change.html:29
 #: templates/users/list.html:22
-#, fuzzy
-#| msgid "ChangeUser"
 msgid "Change"
-msgstr "Изменение пользователя"
+msgstr "Изменить"
 
 #: templates/labels/create.html:4 templates/labels/list.html:5
-#, fuzzy
-#| msgid "CreateStatus"
 msgid "Create Label"
-msgstr "Создание статуса"
+msgstr "Создать метку"
 
 #: templates/labels/create.html:11 templates/statuses/create.html:11
 #: templates/tasks/create.html:28
-#, fuzzy
-#| msgid "CreateStatus"
 msgid "Create"
-msgstr "Создание статуса"
+msgstr "Создать"
 
 #: templates/labels/delete.html:4
-#, fuzzy
-#| msgid "DeleteUser"
 msgid "Delete Label"
-msgstr "Удаление пользователя"
+msgstr "Удаление метки"
 
 #: templates/labels/delete.html:6 templates/statuses/delete.html:6
 #: templates/tasks/delete.html:6 templates/users/delete.html:6
@@ -228,34 +216,24 @@ msgstr "Дата создания"
 #: templates/labels/list.html:22 templates/statuses/list.html:23
 #: templates/tasks/detail.html:44 templates/tasks/list.html:62
 #: templates/users/list.html:23
-#, fuzzy
-#| msgid "DeleteUser"
 msgid "Delete"
-msgstr "Удаление пользователя"
+msgstr "Удалить"
 
 #: templates/statuses/change.html:4
-#, fuzzy
-#| msgid "CreateStatus"
 msgid "Change Status"
-msgstr "Создание статуса"
+msgstr "Изменение статуса"
 
 #: templates/statuses/create.html:4 templates/statuses/list.html:5
-#, fuzzy
-#| msgid "CreateStatus"
 msgid "Create Status"
-msgstr "Создание статуса"
+msgstr "Создать статус"
 
 #: templates/statuses/delete.html:4
-#, fuzzy
-#| msgid "CreateStatus"
 msgid "Delete Status"
-msgstr "Создание статуса"
+msgstr "Удаление статуса"
 
 #: templates/tasks/change.html:4
-#, fuzzy
-#| msgid "ChangeUser"
 msgid "Change Task"
-msgstr "Изменение пользователя"
+msgstr "Изменение задачи"
 
 #: templates/tasks/change.html:12 templates/tasks/create.html:13
 msgid "Description"
@@ -264,8 +242,6 @@ msgstr "Описание"
 #: templates/tasks/change.html:16 templates/tasks/create.html:17
 #: templates/tasks/detail.html:23 templates/tasks/list.html:10
 #: templates/tasks/list.html:45
-#, fuzzy
-#| msgid "Statuses"
 msgid "Status"
 msgstr "Статусы"
 
@@ -276,30 +252,22 @@ msgid "Executor"
 msgstr "Исполнитель"
 
 #: templates/tasks/create.html:4 templates/tasks/list.html:5
-#, fuzzy
-#| msgid "CreateStatus"
 msgid "Create Task"
-msgstr "Создание статуса"
+msgstr "Создать задачу"
 
 #: templates/tasks/delete.html:4
-#, fuzzy
-#| msgid "DeleteUser"
 msgid "Delete Task"
-msgstr "Удаление пользователя"
+msgstr "Удаление задачи"
 
 #: templates/tasks/detail.html:4
-#, fuzzy
-#| msgid "Tasks"
 msgid "View Task"
-msgstr "Задачи"
+msgstr "Просмотр задачи"
 
 #: templates/tasks/detail.html:15 templates/tasks/list.html:46
 msgid "Author"
 msgstr "Автор"
 
 #: templates/tasks/list.html:22
-#, fuzzy
-#| msgid "Labels"
 msgid "Label"
 msgstr "Метки"
 
@@ -308,8 +276,6 @@ msgid "Only my tasks"
 msgstr "Только свои задачи"
 
 #: templates/users/change.html:4
-#, fuzzy
-#| msgid "ChangeUser"
 msgid "Change User"
 msgstr "Изменение пользователя"
 
@@ -322,8 +288,6 @@ msgid "Last Name"
 msgstr "Фамилия"
 
 #: templates/users/change.html:16 templates/users/list.html:9
-#, fuzzy
-#| msgid "Users"
 msgid "Username"
 msgstr "Пользователи"
 
@@ -348,8 +312,6 @@ msgid "To confirm, please enter the password again"
 msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз"
 
 #: templates/users/delete.html:4
-#, fuzzy
-#| msgid "DeleteUser"
 msgid "Delete User"
 msgstr "Удаление пользователя"
 
