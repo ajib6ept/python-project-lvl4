@@ -243,7 +243,7 @@ msgstr "Описание"
 #: templates/tasks/detail.html:23 templates/tasks/list.html:10
 #: templates/tasks/list.html:45
 msgid "Status"
-msgstr "Статусы"
+msgstr "Статус"
 
 #: templates/tasks/change.html:20 templates/tasks/create.html:21
 #: templates/tasks/detail.html:19 templates/tasks/list.html:16
