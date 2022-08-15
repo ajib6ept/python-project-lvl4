@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-25 06:47+0300\n"
+"POT-Creation-Date: 2022-08-15 06:24+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -322,7 +322,7 @@ msgid "Last Name"
 msgstr "Фамилия"
 
 #: templates/users/change.html:16 templates/users/list.html:9
-#: templates/users/login.html:8 templates/users/register.html:16
+#: templates/users/register.html:16
 #, fuzzy
 #| msgid "Users"
 msgid "Username"
@@ -357,6 +357,10 @@ msgstr "Удаление пользователя"
 #: templates/users/list.html:10
 msgid "Full name"
 msgstr "Полное имя"
+
+#: templates/users/login.html:8
+msgid "Login Username"
+msgstr "Имя пользователя"
 
 #: templates/users/login.html:16
 msgid "Log_in"
