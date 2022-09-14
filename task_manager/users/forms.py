@@ -1,6 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
+from django.core.exceptions import ValidationError
+
+from django.contrib.auth.password_validation import validate_password
 
 from task_manager.users.models import TaskUser
 
@@ -38,26 +41,44 @@ class TaskManagerAuthenticationForm(AuthenticationForm):
 
 class TaskManagerChangeUserForm(forms.ModelForm):
 
-    password1 = forms.CharField(widget=forms.PasswordInput())
-    password2 = forms.CharField(widget=forms.PasswordInput())
+    password1 = forms.CharField(widget=forms.PasswordInput(), label=_("Пароль"))
+    password2 = forms.CharField(widget=forms.PasswordInput(), label=_("Подтверждение пароля"))
 
     class Meta:
         model = TaskUser
         fields = (
-            "username",
             "first_name",
             "last_name",
+            "username", 
         )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.fields['password1'].help_text = '<ul><li>Ваш пароль должен содержать как минимум 3 символа.</li></ul>'
+        self.fields['password2'].help_text = 'Для подтверждения введите, пожалуйста, пароль ещё раз.'
+    
+    def clean_password2(self):
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
 
-        self.fields["username"].widget.attrs["class"] = "form-control"
-        self.fields["first_name"].widget.attrs["class"] = "form-control"
-        self.fields["last_name"].widget.attrs["class"] = "form-control"
-        self.fields["password1"].widget.attrs["class"] = "form-control"
-        self.fields["password1"].widget.attrs["placeholder"] = _("Пароль")
-        self.fields["password2"].widget.attrs["class"] = "form-control"
-        self.fields["password2"].widget.attrs["placeholder"] = _(
-            "Подтверждение пароля"
-        )
+        try:
+            validate_password(password1, self.instance)
+        except forms.ValidationError as error:
+            self.add_error('password1', error)
+
+        try:
+            validate_password(password2, self.instance)
+        except forms.ValidationError as error:
+            self.add_error('password2', error)
+
+        if password1 and password2 and password1 != password2:
+            raise ValidationError(_("Введенные пароли не совпадают."))
+
+        return password2
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_password(self.cleaned_data["password1"])
+        if commit:
+            user.save()
+        return user
