@@ -1,13 +1,12 @@
-from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
 
-from .forms import TaskManagerChangeUserForm, TaskManagerUserCreationForm
-from .mixins import TaskUserAuthorizationMixin
-from .models import TaskUser
+from task_manager.users.forms import TaskManagerChangeUserForm, TaskManagerUserCreationForm
+from task_manager.users.mixins import TaskUserAuthorizationMixin
+from task_manager.users.models import TaskUser
 
 
 class UsersListView(ListView):
@@ -24,15 +23,6 @@ class UserCreateView(SuccessMessageMixin, FormView):
     def form_valid(self, form):
         form.save()
         return super().form_valid(form)
-
-    def form_invalid(self, form):
-        error_message = _(
-            "Пожалуйста, проверьте правильность заполнения полей. \
-            Поля могут быть чувствительны к регистру."
-        )
-        messages.error(self.request, error_message)
-        return super().form_invalid(form)
-
 
 class UserUpdateView(
     SuccessMessageMixin, TaskUserAuthorizationMixin, UpdateView
