@@ -14,8 +14,6 @@ class UserFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = TaskUser
 
-    # email = faker.email()
-
     first_name = factory.Faker("first_name")
     last_name = factory.Faker("last_name")
     username = factory.Faker("email")
@@ -29,6 +27,13 @@ class StatusFactory(factory.django.DjangoModelFactory):
     name = factory.Sequence(lambda n: "Status%s" % n)
 
 
+class LabelFactory(factory.django.DjangoModelFactory):
+    class Meta:
+        model = Label
+
+    name = factory.Sequence(lambda n: "Label%s" % n)
+
+
 class TaskFactory(factory.django.DjangoModelFactory):
     class Meta:
         model = Task
@@ -40,8 +45,12 @@ class TaskFactory(factory.django.DjangoModelFactory):
     executor = factory.SubFactory(UserFactory)
 
 
-class LabelFactory(factory.django.DjangoModelFactory):
-    class Meta:
-        model = Label
+    @factory.post_generation
+    def labels(self, create, extracted, **kwargs):
+        if not create:
+            return
 
-    name = factory.Sequence(lambda n: "Label%s" % n)
+        if extracted:
+            for label in extracted:
+                self.labels.add(label)
+

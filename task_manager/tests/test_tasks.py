@@ -1,8 +1,8 @@
 from django.test import Client, TestCase
 from django.urls import reverse
-from task_manager.tasks.models import Task
+from task_manager.tasks.models import Task, TaskUser, Label
 
-from .factories import LabelFactory, StatusFactory, TaskFactory, UserFactory
+from task_manager.tests.factories import LabelFactory, StatusFactory, TaskFactory, UserFactory, Status
 
 
 class TaskCreateChangeDeleteTest(TestCase):
@@ -82,4 +82,41 @@ class TaskCreateChangeDeleteTest(TestCase):
         self.assertEqual(
             Task.objects.filter(name=delete_task.name).exists(),
             False,
+        )
+
+
+    def test_delete_status_attributes(self):
+        """
+        Prohibit deleting a label, status, user if there is a task associated with them
+        """
+        task = TaskFactory.create(labels=[LabelFactory(), LabelFactory()])
+        task_author = task.author
+        task_executor = task.executor
+        task_status = task.status
+        task_label = task.labels.all()[0]
+
+        self.client.post(reverse("user_del", kwargs={"pk": task_executor.pk}))
+        self.assertEqual(
+            TaskUser.objects.filter(username=task_author.username).exists(),
+            True,
+        )
+
+        self.client.post(reverse("user_del", kwargs={"pk": task_executor.pk}))
+        self.assertEqual(
+            TaskUser.objects.filter(username=task_executor.username).exists(),
+            True,
+        )
+
+        self.client.post(
+            reverse("status_del", kwargs={"pk": task_status.pk})
+        )
+        self.assertEqual(
+            Status.objects.filter(name=task_status.name).exists(),
+            True,
+        )
+
+        self.client.post(reverse("label_del", kwargs={"pk": task_label.pk}))
+        self.assertEqual(
+            Label.objects.filter(name=task_label.name).exists(),
+            True,
         )
