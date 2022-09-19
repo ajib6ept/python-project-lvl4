@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import TemplateView
 from django.views.generic.edit import FormView
 
-from .forms import TaskManagerAuthenticationForm
+from task_manager.forms import TaskManagerAuthenticationForm
 
 
 class HomePageView(TemplateView):

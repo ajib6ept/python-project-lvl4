@@ -3,7 +3,7 @@ from django.test import Client
 from django.urls import reverse
 from task_manager.statuses.models import Status
 
-from .factories import StatusFactory, UserFactory
+from task_manager.tests.factories import StatusFactory, UserFactory
 
 
 class StatusCreateChangeDeleteTest(TestCase):

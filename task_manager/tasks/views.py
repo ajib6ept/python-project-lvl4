@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -8,18 +7,19 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django_filters.views import FilterView
 
-from .filters import TaskFilter
-from .forms import TaskCreateForm
-from .models import Task
+from task_manager.tasks.filters import TaskFilter
+from task_manager.tasks.forms import TaskCreateForm
+from task_manager.tasks.models import Task
+from task_manager.mixins import TaskLoginRequiredMixin
 
 
-class TaskListView(FilterView):
+class TaskListView(TaskLoginRequiredMixin, FilterView):
     template_name = "tasks/list.html"
     model = Task
     filterset_class = TaskFilter
 
 
-class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
+class TaskCreateView(TaskLoginRequiredMixin, SuccessMessageMixin, FormView):
     template_name = "tasks/create.html"
     form_class = TaskCreateForm
     success_url = reverse_lazy("task_list")
@@ -31,7 +31,7 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
         return super().form_valid(form)
 
 
-class TaskChangeView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class TaskChangeView(TaskLoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Task
     template_name = "tasks/change.html"
     form_class = TaskCreateForm
@@ -43,7 +43,7 @@ class TaskChangeView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return super().form_valid(form)
 
 
-class TaskDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class TaskDeleteView(TaskLoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Task
     success_url = reverse_lazy("task_list")
     template_name = "tasks/delete.html"

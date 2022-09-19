@@ -1,20 +1,23 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
+from django.contrib import messages
+
+from task_manager.mixins import TaskLoginRequiredMixin
 
 from .forms import LabelCreateForm
 from .models import Label
 
 
-class LabelListView(ListView):
+class LabelListView(TaskLoginRequiredMixin, ListView):
     template_name = "labels/list.html"
     model = Label
 
 
-class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
+class LabelCreateView(TaskLoginRequiredMixin, SuccessMessageMixin, FormView):
     template_name = "labels/create.html"
     form_class = LabelCreateForm
     success_url = reverse_lazy("label_list")
@@ -25,7 +28,7 @@ class LabelCreateView(LoginRequiredMixin, SuccessMessageMixin, FormView):
         return super().form_valid(form)
 
 
-class LabelChangeView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class LabelChangeView(TaskLoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = Label
     template_name = "labels/change.html"
     form_class = LabelCreateForm
@@ -37,8 +40,16 @@ class LabelChangeView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return super().form_valid(form)
 
 
-class LabelDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class LabelDeleteView(TaskLoginRequiredMixin, SuccessMessageMixin, DeleteView):
     model = Label
     success_url = reverse_lazy("label_list")
     template_name = "labels/delete.html"
     success_message = _("Метка успешно удалена")
+
+    def form_valid(self, form, *args, **kwargs):
+        object = self.get_object()
+        if object.child_count > 0:
+            error_msg = _("Вы не можете удалить метку, связаннную с задачей")
+            messages.error(self.request, error_msg)
+            return HttpResponseRedirect(self.success_url)
+        return super().form_valid(form)

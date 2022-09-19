@@ -9,7 +9,6 @@ from task_manager.users.models import TaskUser
 
 
 class TaskManagerUserCreationForm(UserCreationForm):
-
     class Meta:
         model = TaskUser
         fields = (
@@ -20,11 +19,10 @@ class TaskManagerUserCreationForm(UserCreationForm):
             "password2",
         )
 
-
     def __init__(self, *args, **kwargs):
         super(TaskManagerUserCreationForm, self).__init__(*args, **kwargs)
-        self.fields['password1'].help_text = '<ul><li>Ваш пароль должен содержать как минимум 3 символа.</li></ul>'
-
+        help = "Ваш пароль должен содержать как минимум 3 символа."
+        self.fields["password1"].help_text = f"<ul><li>{help}</li></ul>"
 
 
 class TaskManagerAuthenticationForm(AuthenticationForm):
@@ -41,22 +39,29 @@ class TaskManagerAuthenticationForm(AuthenticationForm):
 
 class TaskManagerChangeUserForm(forms.ModelForm):
 
-    password1 = forms.CharField(widget=forms.PasswordInput(), label=_("Пароль"))
-    password2 = forms.CharField(widget=forms.PasswordInput(), label=_("Подтверждение пароля"))
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(), label=_("Пароль")
+    )
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(), label=_("Подтверждение пароля")
+    )
 
     class Meta:
         model = TaskUser
         fields = (
             "first_name",
             "last_name",
-            "username", 
+            "username",
         )
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['password1'].help_text = '<ul><li>Ваш пароль должен содержать как минимум 3 символа.</li></ul>'
-        self.fields['password2'].help_text = 'Для подтверждения введите, пожалуйста, пароль ещё раз.'
-    
+        help = "Ваш пароль должен содержать как минимум 3 символа."
+        self.fields["password1"].help_text = f"<ul><li>{help}</li></ul>"
+        self.fields[
+            "password2"
+        ].help_text = "Для подтверждения введите, пожалуйста, пароль ещё раз."
+
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")
@@ -64,12 +69,12 @@ class TaskManagerChangeUserForm(forms.ModelForm):
         try:
             validate_password(password1, self.instance)
         except forms.ValidationError as error:
-            self.add_error('password1', error)
+            self.add_error("password1", error)
 
         try:
             validate_password(password2, self.instance)
         except forms.ValidationError as error:
-            self.add_error('password2', error)
+            self.add_error("password2", error)
 
         if password1 and password2 and password1 != password2:
             raise ValidationError(_("Введенные пароли не совпадают."))

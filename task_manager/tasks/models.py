@@ -7,16 +7,24 @@ from task_manager.users.models import TaskUser
 class Task(models.Model):
     name = models.CharField(max_length=150)
     description = models.TextField()
-    status = models.ForeignKey(Status, on_delete=models.CASCADE)
+    status = models.ForeignKey(
+        Status, on_delete=models.PROTECT, related_name="task_status"
+    )
     author = models.ForeignKey(
-        TaskUser, on_delete=models.CASCADE, related_name="author"
+        TaskUser, on_delete=models.PROTECT, related_name="task_author"
     )
     executor = models.ForeignKey(
-        TaskUser, on_delete=models.CASCADE, related_name="executor"
+        TaskUser,
+        on_delete=models.PROTECT,
+        related_name="task_executor",
+        blank=True,
+        null=True,
     )
     date_created = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
-    labels = models.ManyToManyField(Label, blank=True)
+    labels = models.ManyToManyField(
+        Label, blank=True, related_name="tasks_label"
+    )
 
     def __str__(self):
         return self.name

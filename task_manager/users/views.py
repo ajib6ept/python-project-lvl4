@@ -1,10 +1,14 @@
+from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
+from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
-
-from task_manager.users.forms import TaskManagerChangeUserForm, TaskManagerUserCreationForm
+from task_manager.users.forms import (
+    TaskManagerChangeUserForm,
+    TaskManagerUserCreationForm,
+)
 from task_manager.users.mixins import TaskUserAuthorizationMixin
 from task_manager.users.models import TaskUser
 
@@ -24,6 +28,7 @@ class UserCreateView(SuccessMessageMixin, FormView):
         form.save()
         return super().form_valid(form)
 
+
 class UserUpdateView(
     SuccessMessageMixin, TaskUserAuthorizationMixin, UpdateView
 ):
@@ -41,3 +46,13 @@ class UserDeleteView(
     success_url = reverse_lazy("users_lists")
     template_name = "users/delete.html"
     success_message = _("Пользователь успешно удалён")
+
+    def form_valid(self, form, *args, **kwargs):
+        object = self.get_object()
+        if object.child_count > 0:
+            error_msg = _(
+                "Вы не можете удалить пользователя, связаннного с задачей"
+            )
+            messages.error(self.request, error_msg)
+            return HttpResponseRedirect(self.success_url)
+        return super().form_valid(form)

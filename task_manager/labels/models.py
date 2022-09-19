@@ -8,3 +8,7 @@ class Label(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def child_count(self):
+        return self.tasks_label.count()

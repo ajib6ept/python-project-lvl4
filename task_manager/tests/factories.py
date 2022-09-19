@@ -44,7 +44,6 @@ class TaskFactory(factory.django.DjangoModelFactory):
     author = factory.SubFactory(UserFactory)
     executor = factory.SubFactory(UserFactory)
 
-
     @factory.post_generation
     def labels(self, create, extracted, **kwargs):
         if not create:
@@ -53,4 +52,3 @@ class TaskFactory(factory.django.DjangoModelFactory):
         if extracted:
             for label in extracted:
                 self.labels.add(label)
-

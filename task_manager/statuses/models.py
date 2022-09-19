@@ -8,3 +8,7 @@ class Status(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def child_count(self):
+        return self.task_status.count()
