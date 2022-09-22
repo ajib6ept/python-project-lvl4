@@ -8,7 +8,7 @@ class TaskUserAuthorizationMixin(LoginRequiredMixin):
     def dispatch(self, request, *args, **kwargs):
         obj = self.get_object()
         if obj != self.request.user:
-            message = _("Вы не авторизованы! Пожалуйста, выполните вход.")
+            message = _("У вас нет прав для изменения другого пользователя.")
             messages.error(request, message)
-            return redirect("user_login")
+            return redirect("users_lists")
         return super().dispatch(request, *args, **kwargs)
