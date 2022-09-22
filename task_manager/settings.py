@@ -16,7 +16,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 
-SECRET_KEY = os.environ.get("SECRET_KEY", '123')
+SECRET_KEY = os.environ.get("SECRET_KEY", "123")
 
 
 DEBUG = bool(os.getenv("DEBUG", False))
@@ -97,6 +97,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
+        "OPTIONS": {
+            "min_length": 3,
+        },
     },
     {
         "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
