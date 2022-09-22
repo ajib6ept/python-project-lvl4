@@ -34,14 +34,12 @@ class TaskCreateChangeDeleteTest(TestCase):
     def test_create_task(self):
         new_task_dict = self.from_task_factory_item_to_dict(self.task)
         self.client_without_auth.post(reverse("task_create"), new_task_dict)
-        self.assertEqual(
-            Task.objects.filter(name=new_task_dict["name"]).exists(),
-            False,
+        self.assertFalse(
+            Task.objects.filter(name=new_task_dict["name"]).exists()
         )
         self.client.post(reverse("task_create"), new_task_dict)
-        self.assertEqual(
-            Task.objects.filter(name=new_task_dict["name"]).exists(),
-            True,
+        self.assertTrue(
+            Task.objects.filter(name=new_task_dict["name"]).exists()
         )
 
     def test_change_task(self):
@@ -54,17 +52,15 @@ class TaskCreateChangeDeleteTest(TestCase):
             reverse("task_chd", kwargs={"pk": change_task.pk}),
             change_task_dict,
         )
-        self.assertEqual(
-            Task.objects.filter(name=change_task_dict["name"]).exists(),
-            False,
+        self.assertFalse(
+            Task.objects.filter(name=change_task_dict["name"]).exists()
         )
         self.client.post(
             reverse("task_chd", kwargs={"pk": change_task.pk}),
             change_task_dict,
         )
-        self.assertEqual(
-            Task.objects.filter(name=change_task_dict["name"]).exists(),
-            True,
+        self.assertTrue(
+            Task.objects.filter(name=change_task_dict["name"]).exists()
         )
 
     def test_delete_status(self):
@@ -72,23 +68,14 @@ class TaskCreateChangeDeleteTest(TestCase):
         self.client_without_auth.post(
             reverse("task_del", kwargs={"pk": delete_task.pk})
         )
-        self.assertEqual(
-            Task.objects.filter(name=delete_task.name).exists(),
-            True,
-        )
+        self.assertTrue(Task.objects.filter(name=delete_task.name).exists())
         other_author = UserFactory()
         other_client = Client()
         other_client.force_login(other_author)
         other_client.post(reverse("task_del", kwargs={"pk": delete_task.pk}))
-        self.assertEqual(
-            Task.objects.filter(name=delete_task.name).exists(),
-            True,
-        )
+        self.assertTrue(Task.objects.filter(name=delete_task.name).exists())
         self.client.post(reverse("task_del", kwargs={"pk": delete_task.pk}))
-        self.assertEqual(
-            Task.objects.filter(name=delete_task.name).exists(),
-            False,
-        )
+        self.assertFalse(Task.objects.filter(name=delete_task.name).exists())
 
     def test_delete_status_attributes(self):
         """
@@ -105,25 +92,17 @@ class TaskCreateChangeDeleteTest(TestCase):
         client.force_login(task_author)
 
         client.post(reverse("user_del", kwargs={"pk": task_executor.pk}))
-        self.assertEqual(
-            TaskUser.objects.filter(username=task_author.username).exists(),
-            True,
+        self.assertTrue(
+            TaskUser.objects.filter(username=task_author.username).exists()
         )
 
         client.post(reverse("user_del", kwargs={"pk": task_executor.pk}))
-        self.assertEqual(
-            TaskUser.objects.filter(username=task_executor.username).exists(),
-            True,
+        self.assertTrue(
+            TaskUser.objects.filter(username=task_executor.username).exists()
         )
 
         client.post(reverse("status_del", kwargs={"pk": task_status.pk}))
-        self.assertEqual(
-            Status.objects.filter(name=task_status.name).exists(),
-            True,
-        )
+        self.assertTrue(Status.objects.filter(name=task_status.name).exists())
 
         client.post(reverse("label_del", kwargs={"pk": task_label.pk}))
-        self.assertEqual(
-            Label.objects.filter(name=task_label.name).exists(),
-            True,
-        )
+        self.assertTrue(Label.objects.filter(name=task_label.name).exists())

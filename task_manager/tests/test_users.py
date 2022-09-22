@@ -21,16 +21,14 @@ class UserCreateChangeDeleteTest(TestCase):
         }
 
     def test_create_user(self):
-        self.assertEqual(
-            TaskUser.objects.filter(username=self.new_user.username).exists(),
-            False,
+        self.assertFalse(
+            TaskUser.objects.filter(username=self.new_user.username).exists()
         )
         new_user_dict = self.from_user_factory_item_to_dict(self.new_user)
         response = self.client.post(reverse("register"), new_user_dict)
         self.assertEqual(response.status_code, 302)
-        self.assertEqual(
-            TaskUser.objects.filter(username=self.new_user.username).exists(),
-            True,
+        self.assertTrue(
+            TaskUser.objects.filter(username=self.new_user.username).exists()
         )
 
     def test_change_user(self):
@@ -43,49 +41,27 @@ class UserCreateChangeDeleteTest(TestCase):
             reverse("user_chg", kwargs={"pk": change_user.pk}),
             change_user_dict,
         )
-        self.assertEqual(
-            TaskUser.objects.filter(username=change_user.username).exists(),
-            True,
+        self.assertTrue(
+            TaskUser.objects.filter(username=change_user.username).exists()
         )
         self.client.force_login(change_user)
         self.client.post(
             reverse("user_chg", kwargs={"pk": change_user.pk}),
             change_user_dict,
         )
-        self.assertEqual(
-            TaskUser.objects.filter(username=change_user.username).exists(),
-            False,
+        self.assertFalse(
+            TaskUser.objects.filter(username=change_user.username).exists()
         )
 
     def test_delete_user(self):
         delete_user = UserFactory()
         self.client.post(reverse("user_del", kwargs={"pk": delete_user.pk}))
-        self.assertEqual(
-            TaskUser.objects.filter(username=delete_user.username).exists(),
-            True,
+        self.assertTrue(
+            TaskUser.objects.filter(username=delete_user.username).exists()
         )
+
         self.client.force_login(delete_user)
         self.client.post(reverse("user_del", kwargs={"pk": delete_user.pk}))
-        self.assertEqual(
-            TaskUser.objects.filter(username=delete_user.username).exists(),
-            False,
+        self.assertFalse(
+            TaskUser.objects.filter(username=delete_user.username).exists()
         )
-
-
-# other file
-
-
-# class TaskManageMessagesTest(TestCase):
-#     def test_success_messgate(self):
-#         pass
-
-#     def test_failure_message(self):
-#         pass
-
-
-# class TaskManagerOtherTests(TestCase):
-#     def test_form_validation(self):
-#         pass
-
-#     def test_locale(self):
-#         pass

@@ -11,15 +11,13 @@ class InternationalizationLocalizationTest(TestCase):
     @override_settings(LANGUAGE_CODE="en-US", LANGUAGES=(("en", "English"),))
     def test_en_locale(self):
         response = self.client.get(reverse("home"))
-        self.assertEqual(
-            bool(re.search("[а-яА-Я]", response.content.decode("utf-8"))),
-            False,
+        self.assertFalse(
+            bool(re.search("[а-яА-Я]", response.content.decode("utf-8")))
         )
 
     @override_settings(LANGUAGE_CODE="ru", LANGUAGES=(("ru", "Russian"),))
     def test_ru_locale(self):
         response = self.client.get(reverse("home"))
-        self.assertEqual(
-            bool(re.search("[а-яА-Я]", response.content.decode("utf-8"))),
-            True,
+        self.assertTrue(
+            bool(re.search("[а-яА-Я]", response.content.decode("utf-8")))
         )

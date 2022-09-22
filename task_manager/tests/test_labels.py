@@ -18,15 +18,9 @@ class LabelCreateChangeDeleteTest(TestCase):
         self.client_without_auth.post(
             reverse("label_create"), {"name": self.label.name}
         )
-        self.assertEqual(
-            Label.objects.filter(name=self.label.name).exists(),
-            False,
-        )
+        self.assertFalse(Label.objects.filter(name=self.label.name).exists())
         self.client.post(reverse("label_create"), {"name": self.label.name})
-        self.assertEqual(
-            Label.objects.filter(name=self.label.name).exists(),
-            True,
-        )
+        self.assertTrue(Label.objects.filter(name=self.label.name).exists())
 
     def test_change_label(self):
         change_label = LabelFactory()
@@ -36,30 +30,18 @@ class LabelCreateChangeDeleteTest(TestCase):
             reverse("label_chd", kwargs={"pk": change_label.pk}),
             {"name": new_label_name},
         )
-        self.assertEqual(
-            Label.objects.filter(name=new_label_name).exists(),
-            False,
-        )
+        self.assertFalse(Label.objects.filter(name=new_label_name).exists())
         self.client.post(
             reverse("label_chd", kwargs={"pk": change_label.pk}),
             {"name": new_label_name},
         )
-        self.assertEqual(
-            Label.objects.filter(name=new_label_name).exists(),
-            True,
-        )
+        self.assertTrue(Label.objects.filter(name=new_label_name).exists())
 
     def test_delete_label(self):
         delete_label = LabelFactory()
         self.client_without_auth.post(
             reverse("label_del", kwargs={"pk": delete_label.pk})
         )
-        self.assertEqual(
-            Label.objects.filter(name=delete_label.name).exists(),
-            True,
-        )
+        self.assertTrue(Label.objects.filter(name=delete_label.name).exists())
         self.client.post(reverse("label_del", kwargs={"pk": delete_label.pk}))
-        self.assertEqual(
-            Label.objects.filter(name=delete_label.name).exists(),
-            False,
-        )
+        self.assertFalse(Label.objects.filter(name=delete_label.name).exists())

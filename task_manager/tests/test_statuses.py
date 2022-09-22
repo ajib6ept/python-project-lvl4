@@ -18,15 +18,9 @@ class StatusCreateChangeDeleteTest(TestCase):
         self.client_without_auth.post(
             reverse("status_create"), {"name": self.status.name}
         )
-        self.assertEqual(
-            Status.objects.filter(name=self.status.name).exists(),
-            False,
-        )
+        self.assertFalse(Status.objects.filter(name=self.status.name).exists())
         self.client.post(reverse("status_create"), {"name": self.status.name})
-        self.assertEqual(
-            Status.objects.filter(name=self.status.name).exists(),
-            True,
-        )
+        self.assertTrue(Status.objects.filter(name=self.status.name).exists())
 
     def test_change_status(self):
         change_status = StatusFactory()
@@ -36,32 +30,24 @@ class StatusCreateChangeDeleteTest(TestCase):
             reverse("status_chd", kwargs={"pk": change_status.pk}),
             {"name": new_status_name},
         )
-        self.assertEqual(
-            Status.objects.filter(name=new_status_name).exists(),
-            False,
-        )
+        self.assertFalse(Status.objects.filter(name=new_status_name).exists())
         self.client.post(
             reverse("status_chd", kwargs={"pk": change_status.pk}),
             {"name": new_status_name},
         )
-        self.assertEqual(
-            Status.objects.filter(name=new_status_name).exists(),
-            True,
-        )
+        self.assertTrue(Status.objects.filter(name=new_status_name).exists())
 
     def test_delete_status(self):
         delete_status = StatusFactory()
         self.client_without_auth.post(
             reverse("status_del", kwargs={"pk": delete_status.pk})
         )
-        self.assertEqual(
-            Status.objects.filter(name=delete_status.name).exists(),
-            True,
+        self.assertTrue(
+            Status.objects.filter(name=delete_status.name).exists()
         )
         self.client.post(
             reverse("status_del", kwargs={"pk": delete_status.pk})
         )
-        self.assertEqual(
-            Status.objects.filter(name=delete_status.name).exists(),
-            False,
+        self.assertFalse(
+            Status.objects.filter(name=delete_status.name).exists()
         )
