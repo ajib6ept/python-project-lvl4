@@ -6,18 +6,20 @@ from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
 from django.contrib import messages
 
-from task_manager.mixins import TaskLoginRequiredMixin
+from task_manager.mixins import TaskManagerLoginRequiredMixin
 
 from .forms import LabelCreateForm
 from .models import Label
 
 
-class LabelListView(TaskLoginRequiredMixin, ListView):
+class LabelListView(TaskManagerLoginRequiredMixin, ListView):
     template_name = "labels/list.html"
     model = Label
 
 
-class LabelCreateView(TaskLoginRequiredMixin, SuccessMessageMixin, FormView):
+class LabelCreateView(
+    TaskManagerLoginRequiredMixin, SuccessMessageMixin, FormView
+):
     template_name = "labels/create.html"
     form_class = LabelCreateForm
     success_url = reverse_lazy("label_list")
@@ -28,7 +30,9 @@ class LabelCreateView(TaskLoginRequiredMixin, SuccessMessageMixin, FormView):
         return super().form_valid(form)
 
 
-class LabelChangeView(TaskLoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class LabelChangeView(
+    TaskManagerLoginRequiredMixin, SuccessMessageMixin, UpdateView
+):
     model = Label
     template_name = "labels/change.html"
     form_class = LabelCreateForm
@@ -40,7 +44,9 @@ class LabelChangeView(TaskLoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return super().form_valid(form)
 
 
-class LabelDeleteView(TaskLoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class LabelDeleteView(
+    TaskManagerLoginRequiredMixin, SuccessMessageMixin, DeleteView
+):
     model = Label
     success_url = reverse_lazy("label_list")
     template_name = "labels/delete.html"

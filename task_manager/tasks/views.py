@@ -10,16 +10,18 @@ from django_filters.views import FilterView
 from task_manager.tasks.filters import TaskFilter
 from task_manager.tasks.forms import TaskCreateForm
 from task_manager.tasks.models import Task
-from task_manager.mixins import TaskLoginRequiredMixin
+from task_manager.mixins import TaskManagerLoginRequiredMixin
 
 
-class TaskListView(TaskLoginRequiredMixin, FilterView):
+class TaskListView(TaskManagerLoginRequiredMixin, FilterView):
     template_name = "tasks/list.html"
     model = Task
     filterset_class = TaskFilter
 
 
-class TaskCreateView(TaskLoginRequiredMixin, SuccessMessageMixin, FormView):
+class TaskCreateView(
+    TaskManagerLoginRequiredMixin, SuccessMessageMixin, FormView
+):
     template_name = "tasks/create.html"
     form_class = TaskCreateForm
     success_url = reverse_lazy("task_list")
@@ -31,7 +33,9 @@ class TaskCreateView(TaskLoginRequiredMixin, SuccessMessageMixin, FormView):
         return super().form_valid(form)
 
 
-class TaskChangeView(TaskLoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class TaskChangeView(
+    TaskManagerLoginRequiredMixin, SuccessMessageMixin, UpdateView
+):
     model = Task
     template_name = "tasks/change.html"
     form_class = TaskCreateForm
@@ -43,7 +47,9 @@ class TaskChangeView(TaskLoginRequiredMixin, SuccessMessageMixin, UpdateView):
         return super().form_valid(form)
 
 
-class TaskDeleteView(TaskLoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class TaskDeleteView(
+    TaskManagerLoginRequiredMixin, SuccessMessageMixin, DeleteView
+):
     model = Task
     success_url = reverse_lazy("task_list")
     template_name = "tasks/delete.html"

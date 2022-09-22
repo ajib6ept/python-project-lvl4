@@ -5,18 +5,20 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django.views.generic.list import ListView
-from task_manager.mixins import TaskLoginRequiredMixin
+from task_manager.mixins import TaskManagerLoginRequiredMixin
 
 from .forms import StatusCreateForm
 from .models import Status
 
 
-class StatusListView(TaskLoginRequiredMixin, ListView):
+class StatusListView(TaskManagerLoginRequiredMixin, ListView):
     template_name = "statuses/list.html"
     model = Status
 
 
-class StatusCreateView(TaskLoginRequiredMixin, SuccessMessageMixin, FormView):
+class StatusCreateView(
+    TaskManagerLoginRequiredMixin, SuccessMessageMixin, FormView
+):
     template_name = "statuses/create.html"
     form_class = StatusCreateForm
     success_url = reverse_lazy("status_list")
@@ -28,7 +30,7 @@ class StatusCreateView(TaskLoginRequiredMixin, SuccessMessageMixin, FormView):
 
 
 class StatusChangeView(
-    TaskLoginRequiredMixin, SuccessMessageMixin, UpdateView
+    TaskManagerLoginRequiredMixin, SuccessMessageMixin, UpdateView
 ):
     model = Status
     template_name = "statuses/change.html"
@@ -42,7 +44,7 @@ class StatusChangeView(
 
 
 class StatusDeleteView(
-    TaskLoginRequiredMixin, SuccessMessageMixin, DeleteView
+    TaskManagerLoginRequiredMixin, SuccessMessageMixin, DeleteView
 ):
     model = Status
     success_url = reverse_lazy("status_list")
