@@ -6,6 +6,8 @@
 [![Actions Status](https://github.com/ajib6ept/python-project-lvl4/workflows/hexlet-code/badge.svg)](https://github.com/ajib6ept/python-project-lvl4/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/06a9f07bcb6f8b8c2b20/maintainability)](https://codeclimate.com/github/ajib6ept/python-project-lvl4/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/06a9f07bcb6f8b8c2b20/test_coverage)](https://codeclimate.com/github/ajib6ept/python-project-lvl4/test_coverage)
+[![pre-commit.ci status](https://results.pre-commit.ci/badge/github/ajib6ept/python-project-lvl4/main.svg)](https://results.pre-commit.ci/latest/github/ajib6ept/python-project-lvl4/main)
+
 ***
 
 This is the fourth project in the Python learning course [hexlet.io](https://ru.hexlet.io)
