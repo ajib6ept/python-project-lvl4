@@ -7,10 +7,10 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import DeleteView, FormView, UpdateView
 from django_filters.views import FilterView
 
+from task_manager.mixins import TaskManagerLoginRequiredMixin
 from task_manager.tasks.filters import TaskFilter
 from task_manager.tasks.forms import TaskCreateForm
 from task_manager.tasks.models import Task
-from task_manager.mixins import TaskManagerLoginRequiredMixin
 
 
 class TaskListView(TaskManagerLoginRequiredMixin, FilterView):

@@ -1,13 +1,13 @@
 from django.test import Client, TestCase
 from django.urls import reverse
-from task_manager.tasks.models import Task, TaskUser, Label
 
+from task_manager.tasks.models import Label, Task, TaskUser
 from task_manager.tests.factories import (
     LabelFactory,
+    Status,
     StatusFactory,
     TaskFactory,
     UserFactory,
-    Status,
 )
 
 

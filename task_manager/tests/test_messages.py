@@ -5,7 +5,6 @@ from django.urls import reverse
 
 from .factories import UserFactory
 
-
 SUCCESS_CLASS_NAME = "alert alert-success alert-dismissible fade show"
 FAILURE_CLASS_NAME = "alert alert-danger alert-dismissible fade show"
 

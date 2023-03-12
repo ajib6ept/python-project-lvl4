@@ -1,12 +1,12 @@
 import django_filters
 from django import forms
+
 from task_manager.labels.models import Label
 
 from .models import Task
 
 
 class TaskFilter(django_filters.FilterSet):
-
     labels = django_filters.ModelChoiceFilter(queryset=Label.objects.all())
     self_tasks = django_filters.BooleanFilter(
         widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),

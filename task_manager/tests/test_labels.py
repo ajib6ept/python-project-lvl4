@@ -1,6 +1,6 @@
-from django.test import TestCase
-from django.test import Client
+from django.test import Client, TestCase
 from django.urls import reverse
+
 from task_manager.labels.models import Label
 
 from .factories import LabelFactory, UserFactory

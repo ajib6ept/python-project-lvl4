@@ -1,11 +1,11 @@
 import factory
+from django.contrib.auth.hashers import make_password
 from faker import Factory
+
+from task_manager.labels.models import Label
 from task_manager.statuses.models import Status
 from task_manager.tasks.models import Task
-from task_manager.labels.models import Label
 from task_manager.users.models import TaskUser
-from django.contrib.auth.hashers import make_password
-
 
 faker = Factory.create()
 

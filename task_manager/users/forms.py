@@ -1,9 +1,8 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.utils.translation import gettext_lazy as _
-from django.core.exceptions import ValidationError
-
 from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
 
 from task_manager.users.models import TaskUser
 
@@ -38,7 +37,6 @@ class TaskManagerAuthenticationForm(AuthenticationForm):
 
 
 class TaskManagerChangeUserForm(forms.ModelForm):
-
     password1 = forms.CharField(
         widget=forms.PasswordInput(), label=_("Пароль")
     )

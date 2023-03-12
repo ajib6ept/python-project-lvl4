@@ -1,9 +1,9 @@
-from django.test import TestCase
-from django.test import Client
+from django.test import Client, TestCase
 from django.urls import reverse
 
-from .factories import UserFactory
 from task_manager.users.models import TaskUser
+
+from .factories import UserFactory
 
 
 class UserCreateChangeDeleteTest(TestCase):
